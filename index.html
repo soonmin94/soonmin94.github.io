@@ -1,0 +1,1757 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>R语言及Linux学习</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+	
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+	
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+	
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+	
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+	    <div id='readme' style='width:70%;margin-left:20%;'>
+	      	<article class='markdown-body'>
+	        	<h1 id="1-r-">1.R语言简介</h1>
+<p>关于 R 语言，其是一个自由开放的软件，免费、开放源代码，支持各个主要计算机系统。目前 R 已经存在上万个软件包，关于 R 的安装，大家选择适合自己电脑的版本，点击安装，选择默认的参数，即可顺利完成安装过程。安装后获得一个桌面快捷方式，如“R i386 4.0.2”(这是 32 位版本)，如果是 64 位操作系统，可以同时安装 32 位版本和 64 位版本。对初学者这两种版本区别不大， 尽量选用 64 位版本，毕竟这是将来的趋势.</p>
+<h2 id="1-1-r-rstudio-">1.1 R软件及Rstudio安装</h2>
+<p><strong>R软件</strong>：<a href="https://www.r-project.org/（不太建议下载最新的，因为有的r包更新不迅速）">https://www.r-project.org/（不太建议下载最新的，因为有的r包更新不迅速）</a></p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202022-09-02%2009.51.55.png" alt=""></p>
+<p>点击download R</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 09.53.29.png" alt=""></p>
+<p>选择清华镜像</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 09.53.59.png" alt=""></p>
+<p>下载并安装</p>
+<p><strong>Rstudio软件</strong>：<a href="https://www.rstudio.com/">https://www.rstudio.com/</a></p>
+<p>安装官方的 R 软件后，可以安装 RStudio，RStudio 软 件 是 R 语言的一种集成开发环境（integrated development environment，IDE），可以将许多功能强大的编程工具集成到一个直观、易于学习的界面中。　<font color=FF0000> 这里注意一点，必须先安装 R，再安装 RStudio，不然会出错的。 </font></p>
+<p>#################</p>
+<h2 id="1-2-r-">1.2 <strong>R的使用界面简洁</strong></h2>
+<p>安装好之后，打开 R 界面，R 的界面非常简洁，只有一个菜单栏和一个默认新建的 R Console 控制台。在 R Console 控制台内输入脚本，即可进行运算、绘图和分析。对初学者而言，不建议直接使用 R 来进行分析使用。</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.05.56.png" alt=""></p>
+<p><strong>1.</strong>  左下方的控制台，这与 R 软件的界面是一样的，整个代码流程的运行过程都将在这里进行。介绍一个快捷键，<strong>Ctrl+l，快速清空控制台</strong>。但是注意一点，不管怎么清空控制台，其运行结果还是在的，并不是清空环境变量，与后面介绍的注意区分</p>
+<p><strong>2.</strong>   代码编辑器，位于控制台上方，在此我们可以自由的编写代码，我们可以在其中随意删改所需要的代码。当然，在首次打开 RStudio 时并没有显示代码编辑器，点击左上角的图形，选择第一个即可完成。</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.06.52.png" alt=""></p>
+<p><strong>3.</strong>  工作空间（Environment）与历史信息（History），展示图中右上角的位置。1）Enviroment 显示所有活动对象，已经有定义的变量、函数都显示在这里。在后面分析过程中将经常进行查看；2）History 是记录在控制台中运行的所有命令，在这里，以前运行过的命令都显示在这里，而且，不限于本次 RStudio 运行期间，也包括以前使用 RStudio 时运行过的命令。如果有时候被误删代码时可以回看之前的运行记录。</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.07.32.png" alt=""></p>
+<p><strong>4.</strong>  画图和函数包以及帮助窗口。</p>
+<p>1). Files：文件夹目录信息，这里列出了当前项目的目录（文件夹）内容，其中以“.R”或者“.r”为扩展名的时 R 源程序文件，单机某一源程序文件就可以在编辑窗格中打开该文件。</p>
+<p>2). Plots：图形的输出界面，如果程序中有绘图结果， 将会显示在这个窗格，因为绘图需要足够的空间，所以当屏幕分辨率过低或者 Plots 窗格太小的时候，可以点击“Zoom”图标将图形显示在一个单独的窗口中，或者将图形窗口作为唯一窗格显示。</p>
+<p>3). Packages：显示已安装的 R 扩展包及其文档。</p>
+<p>4). Help：查看帮助文档，R 软件的文档与 RStudio 的文档都在这里。</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.11.32.png" alt=""></p>
+<h2 id="1-3-r-">1.3 <strong>R包安装使用</strong></h2>
+<p>R 包是由多个函数组成的集合，往往配合有详细的说明和示例内容，R 包可以理解成为软件，刚安装完的 R 语言就好比一台新电脑，只有最基本的功能，即 base 包，而 R 之所以迷人就是因为其拥有丰富的 R 包，特定的分析功能，需要相应的 R 包来实现。下面，基于 R 包的不同来源，我们分别介绍一下不同的安装方法。</p>
+<p><strong>1.CRAN</strong></p>
+<p>CRAN 是一个 R 的存储库，除了数千个不同用户贡献的 R 包的源代码之外，还提供了最新和旧版本的 R 包下载地址。目前而言，大部分的 R 包主要储存在 CRAN 中。为了方便使用下载，CRAN 在全球提供了各种镜像，我们可以直接从 CRAN 的镜像中获取下载链接。下面，以 ggplot2 包为例，我们来介绍几种下载方法。</p>
+<p>方法一：可以使用 <strong>install.packages</strong> 函数从 CRAN 安装 R 包。</p>
+<pre><code>install.packages(&quot;ggplot2&quot;)
+</code></pre><p>使用<code>install.packages</code>函数，将从 CRAN 镜像上下载源代码，并在您的计算机上本地安装软件包（以及依赖项）</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.16.21.png" alt=""></p>
+<p>方法二：点击<code>Tools</code>---<code>Install Packages</code>---在 Packages 栏目中输入“ggplot2”---点击“Install”</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.16.51.png" alt=""></p>
+<p><strong>2.Bioconductor</strong></p>
+<p>除 CRAN 外，还有个和我们生物比较密切相关的储存库，Bioconductor。</p>
+<p>Bioconductor 是另一个用于生物信息学的专题库，其中储存有大量生信分析相关的 R 包，提供分析和理解高通量基因组数据的工具.</p>
+<pre><code class="lang-R">if(!requireNamespace(&quot;BiocManger&quot;,quietly=TRUE))
+install.packages(&quot;BiocManager&quot;)
+</code></pre>
+<p>和刚才的 ggplot2 包一样。首先通过<code>install.packages(&quot;BiocManager&quot;)</code>来成功安装BiocManager 包。</p>
+<pre><code class="lang-R">BiocManager::install(&quot;limma&quot;)
+</code></pre>
+<p>接着通过<code>BiocManager::install(&quot;R 包&quot;)</code>来进行安装。BiocManager::install(&quot;R 包&quot;)是指调用BiocManager 包中 install 函数来进行安装。</p>
+<p>有时候，受限于网速等各种原因的问题，代码安装过程会出现各种问题，对此，我们可</p>
+<p>以使用本地安装的方法，以 limma 包的安装为例：</p>
+<p>1). 搜索“limma bioconductor”找到相应的网站，点击进入网站（个人更建议使用Bing搜索）</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.20.36.png" alt=""></p>
+<p>2).在 Package Archives 中选择相应的版本，大家根据自己电脑的类型进行相应的下载</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.21.18.png" alt=""></p>
+<p>3). 与之前 CRAN 下载的不同，把 Install from 选择改为第二个选项“Package Archive File (.tgz; .tar.gz)”，然后点击 Browse 选择刚下载的文件“limma_3.46.0.tar”，随后点击 Install，即可完成安装。</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.21.47.png" alt=""></p>
+<p><strong>3.github</strong></p>
+<p>除此之外，我们会发现一些新的 R 包都不在这两个里面。有些新的 R 包作者会上传到Github 网站上，这时候就需要通过其他的方式来进行下载。</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.23.07.png" style="zoom:80%;" /></p>
+<p>其中<code>kjhealy</code>是 Github 网站的某个作者的名称，<code>socviz</code>是该作者名下的一个 R 扩展包。</p>
+<font color=FF0000> 一般情况下不建议R包更新 </font>，这里注意一点，必须先安装 R，再安装 RStudio，不然会出错的。以及在安装过程中，询问是否更新，都是选择 no
+
+## 1.4 <strong>一些注意</strong>
+
+1).<code>library()</code>是检验 R 包安装成功的金标准，在安装过程中，会出现一大串红色的字，不要慌，有兴趣的可以看看，没兴趣的也可以不看，这是作者给的里面的一些相关信息。安装完成后，大家可以通过<code>library(包的名称)</code>来快速判断是否安装成功，比如 library(ggplot2)：
+
+<img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 10.26.34.png" alt="">
+
+运行后顺利下一行顺利出现了大于号&gt;，那就是安装成功了；
+
+2). R 包第一次使用时需要安装，以后每次使用直接加载即可，包只需要安装一次，当每次使用都需要通过 library 来加载；
+
+<font color=FF0000>在此仅介绍单细胞相关分析，需要读者有一定R语言基础后再阅读 </font>
+
+<h1 id="2-geo-">2.下载GEO数据</h1>
+<p><strong>安装要读取的R包</strong></p>
+<pre><code>install.packages(&quot;tidyverse&quot;)
+install.packages(&quot;BiocManager&quot;)
+BiocManager::install(&#39;GEOquery&#39;,force = TRUE)
+</code></pre><p>Update all/some/none? [a/s/n]: ，选择n 不进行更新，如果更新all可能会出现r包不匹配</p>
+<p>#有的会显示CRAN不存在这个包，是因为镜像设置问题。
+Tools-global options- packages-选择china-guangzhou的合适，然后再进行安装</p>
+<p><strong>library是检测r包安装好的唯一标准</strong></p>
+<pre><code>library(GEOquery) 
+library(dplyr)
+library(tidyverse)
+</code></pre><p><strong>读取单细胞数据</strong></p>
+<p>在使用数据库时要了解这个样本怎么处理的，在GEO每个样本里面的data processing中可以看见</p>
+<pre><code>#直接网页下载的话就是serise-matrix
+
+#使用函数下载geo数据
+gset = getGEO(GEO=&#39;GSE12417&#39;, destdir=&quot;.&quot;,getGPL = F) #destdir=&quot;.&quot; 下载到当前文件夹，getGPL 平台信息是否下载
+
+</code></pre><pre><code>View(gset)   #查看gset表格
+class(gset)  #查看gset数据类型
+</code></pre><p><strong>设置路径</strong></p>
+<pre><code>getwd() ##查看当前路径 
+setwd(&quot;D:/shangke/lession1&quot;)
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 15.21.19.png" alt=""></p>
+<p><strong>保存gset文件</strong></p>
+<p>环境中打开gset，可以看见三个list，其中54675代表基因数，79代表样本数.
+但每次关闭再打开gset都需要重新加载，所以可以保存个gset文件。
+有rdata,rds（速度更快一点）格式</p>
+<pre><code>save(gset,file = &quot;gse12417.rdata&quot;)
+saveRDS(gset,file = &quot;gse12417.rds&quot;)
+</code></pre><p>#在读取保存好的文件之前 先清空环境（不同文件类型读取方式不同）</p>
+<pre><code>load(&quot;gse12417.rdata&quot;)
+x1=readRDS(&quot;gse12417.rds&quot;)
+</code></pre><p>#也可以一次性保存多的环境对象，点击环境中的save workspace as 保存</p>
+<pre><code>save.image(&quot;/Users/soonmin/Desktop/machine/code class/total-hcm/sup/lession1/gse12417.all.RData&quot;)
+</code></pre><p>#还可以选择多个对象保存，举例选择环境中的x1和b保存</p>
+<pre><code>save(x1,b,file=&quot;123.rdata&quot;)
+</code></pre><p>#workspace读取方式</p>
+<pre><code>load(&quot;/Users/soonmin/Desktop/machine/code class/total-hcm/sup/lession1/gse12417.all.RData&quot;)
+
+#下载不下来可以geo网页上下载后用load函数下载
+
+</code></pre><h1 id="3-geo-">3.GEO数据加载</h1>
+<p><strong>加载所需要的包</strong></p>
+<pre><code>library(Seurat)
+library(tidyverse)
+library(dplyr)
+library(patchwork)
+</code></pre><p><strong>3.1 读取10x的数据</strong></p>
+<pre><code>scRNA.counts=Read10X(&quot;/Users/soonmin/Desktop/machine/code class/total-hcm/sup/lession1/BC21/&quot;)
+</code></pre><p><strong>3.2 创建Seurat对象</strong> Create a Seurat object from raw data
+因为加载的需要为raw data，我们需要判断是否为原始数据，需要从geo网站查看具体样本处理的方式。
+官网描述：“Matrix table with raw UMI counts ” 所以是为原始数据</p>
+<pre><code>scRNA = CreateSeuratObject(scRNA.counts ,min.cells = 3,project=&quot;sample21&quot;, min.features = 300)
+
+class(scRNA) #查看数据结构，结果显示&quot;Seurat&quot;数据结构
+
+View(scRNA) #查看数据结构，显示s4 层级结构（以s3为基础的结构）。
+type代表层级结构类型，可以看见20288*6342 = 基因数*细胞数
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 15.28.50.png" alt=""></p>
+<p><strong>3.3 s4 层级结构对象提取方法</strong></p>
+<p>1）点击白框的绿色箭头 复制后剪切到自己要执行的句子中</p>
+<p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 15.30.38.png" alt=""></p>
+<p>2）@ $交替使用@ $交替使用</p>
+<pre><code> scRNA@assays$RNA@counts
+</code></pre><h1 id="4-">4. 质控归一化</h1>
+<font color=FF0000>对于每个样本都是进行单独质控的 </font>
+
+<p><strong>4.1查看样本的细胞数量</strong></p>
+<pre><code>table(scRNA@meta.data$orig.ident)  
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 15.37.37.png" alt=""></p>
+<p><strong>4.2计算质控指标</strong></p>
+<p><strong>4.2.1计算细胞中线粒体基因比例</strong></p>
+<p>在scRNA的meta.data中新增percent.mt这一列，并且percent.mt赋值PercentageFeatureSet(scRNA, pattern = &quot;^MT-&quot;)</p>
+<pre><code>scRNA[[&quot;percent.mt&quot;]] &lt;- PercentageFeatureSet(scRNA, pattern = &quot;^MT-&quot;)
+
+#scRNA[[]] #提取了scRNA中的meta.data结果
+</code></pre><p>“^MT-” 匹配 MT-开头的所有基因，human里面默认的线粒体相关基因都是mt-开头的</p>
+<p>线粒体基因小于20%，太大是表示细胞处于凋亡等状态差的情况</p>
+<p><strong>4.2.2 计算红细胞比例</strong> (成熟红细胞中无细胞核，测序过程一般很少用红细胞基因)</p>
+<p>#列出红细胞相关基因</p>
+<pre><code>HB.genes &lt;- c(&quot;HBA1&quot;,&quot;HBA2&quot;,&quot;HBB&quot;,&quot;HBD&quot;,&quot;HBE1&quot;,&quot;HBG1&quot;,&quot;HBG2&quot;,&quot;HBM&quot;,&quot;HBQ1&quot;,&quot;HBZ&quot;)
+</code></pre><p>#match 匹配，可得到具体的匹配后位置信息，将红细胞的基因与表达矩阵中的行名（基因名）做匹配，有点像取交集</p>
+<pre><code>HB_m &lt;- match(HB.genes, rownames(scRNA@assays$RNA)) 
+</code></pre><p>#将匹配结果进行提取，有三个匹配到了，后面7个显示na</p>
+<pre><code>HB.genes &lt;- rownames(scRNA@assays$RNA)[HB_m] 
+</code></pre><p>#is.na 判断是不是na值（也就是结果的false），然后！代表删除false的值，相当于去除na值</p>
+<pre><code>HB.genes &lt;- HB.genes[!is.na(HB.genes)]  
+</code></pre><p>#和线粒体一样提取红细胞相关基因</p>
+<p>这么提取是因为有的基因也是HB开头但不是红细胞基因。所以不用pattern = &quot;^HB-&quot;，用features=红细胞的基因，做筛选</p>
+<pre><code>scRNA[[&quot;percent.HB&quot;]]&lt;-PercentageFeatureSet(scRNA, features=HB.genes) 
+</code></pre><p><strong>4.3 Feature、count、线粒体基因、红细胞基因占比可视化</strong></p>
+<pre><code>violin &lt;- VlnPlot(scRNA,
+                  features = c(&quot;nFeature_RNA&quot;, &quot;nCount_RNA&quot;, &quot;percent.mt&quot;,&quot;percent.HB&quot;),  
+                  cols =rainbow(col.num), 
+                  pt.size = 0.01, 
+                  ncol = 4) +  #1行4列形式排序
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) 
+
+  violin
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 16.01.30.png" alt=""></p>
+<p><strong>4.4这几个指标之间的相关性</strong> </p>
+<pre><code>plot1=FeatureScatter(scRNA, feature1 = &quot;nCount_RNA&quot;, feature2 = &quot;percent.mt&quot;)
+plot2=FeatureScatter(scRNA, feature1 = &quot;nCount_RNA&quot;, feature2 = &quot;nFeature_RNA&quot;)
+plot3=FeatureScatter(scRNA, feature1 = &quot;nCount_RNA&quot;, feature2 = &quot;percent.HB&quot;)
+pearplot &lt;- CombinePlots(plots = list(plot1, plot2, plot3), nrow=1, legend=&quot;none&quot;)  
+
+plot1 
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 16.04.37.png" alt=""></p>
+<p>显示测序深度和线粒体的比例是没有相关性的</p>
+<p>我们默认线粒体含量至少要小于20%，这是根据生物学知识得出的默认阈值。红细胞的数目要至少小于5%
+我们质控的目标就是删除离异值。而且注意阈值尽可能取的宽松一下，防止后面分析想要的细胞得不到。</p>
+<p><strong>4.5 过滤</strong> </p>
+<p>从pearplot的图片来做质控---剔除离异值
+nFeature_RNA至少大于200，高质量的话通常500 or 800</p>
+<pre><code>scRNA1 &lt;- subset(scRNA, subset = nFeature_RNA &gt; 500 &amp; 
+                   percent.mt &lt; 20 &amp; percent.HB &lt; 1 &amp; nCount_RNA &gt; 1000)
+</code></pre><p>过滤后剩下5193 细胞数</p>
+<p><strong>4.6 归一化、标准化</strong></p>
+<pre><code>scRNA1 &lt;- NormalizeData(scRNA1, normalization.method = &quot;LogNormalize&quot;, scale.factor = 10000) 
+#scale.factor = 10000 数值扩大10000倍
+</code></pre><h1 id="5-">5.降维</h1>
+<p><strong>5.1 降维前需要挑选高变基因</strong>（highly variable genes,HVGs）</p>
+<pre><code>scRNA1 &lt;- FindVariableFeatures(scRNA1, selection.method = &quot;vst&quot;, nfeatures = 3000) 
+#官方推荐是2000个高变基因
+</code></pre><p>#把top10的高变基因挑选出来，目的是为了作图</p>
+<pre><code>top10 &lt;- head(VariableFeatures(scRNA1), 10) 
+</code></pre><p>#可视化</p>
+<pre><code>plot1 &lt;- VariableFeaturePlot(scRNA1) 
+plot2 &lt;- LabelPoints(plot = plot1, points = top10, repel = TRUE, size=2.5) 
+plot &lt;- CombinePlots(plots = list(plot1, plot2),legend=&quot;bottom&quot;) 
+plot
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 16.19.16.png" alt=""></p>
+<p><strong>5.2 数据放缩</strong></p>
+<p>改变每个基因的表达变化，使细胞间的平均表达量为0，方差为1的标准化数据。</p>
+<p>相当于每个基因赋予相同的权重值，也就意味着表达较高的基因不占优势</p>
+<p>Scaldata方式</p>
+<pre><code>scale.genes &lt;-  rownames(scRNA1)
+scRNA1 &lt;- ScaleData(scRNA1, features = scale.genes)
+</code></pre><p>另外，SCTransform方法，包含NormalizeData 、ScaleData、FindVariableFeatures</p>
+<pre><code>
+scRNA.counts=Read10X(&quot;/Users/soonmin/Desktop/machine/code class/total-hcm/sup/lession2/BC21&quot;)
+
+scRNA = CreateSeuratObject(scRNA.counts ,min.cells = 3,project=&quot;os&quot;, min.features = 300)
+
+scRNA &lt;- PercentageFeatureSet(scRNA, pattern = &quot;^MT-&quot;, col.name = &quot;percent.mt&quot;)
+
+scRNA &lt;- SCTransform(scRNA, vars.to.regress = &quot;percent.mt&quot;, verbose = FALSE)
+
+#SCTransform默认3000个高变基因， Findvariablefeatures默认2000个高变基因
+</code></pre><p><strong>5.3 细胞周期回归</strong></p>
+<p>上一步找到的高变基因，常常会包含一些细胞周期相关基因。所以需根据图判断周期是否对分析有影响</p>
+<p>#查看细胞周期相关基因</p>
+<pre><code>cc.genes 
+</code></pre><p>#周期基因和高变基因取交集</p>
+<pre><code>CaseMatch(c(cc.genes$s.genes,cc.genes$g2m.genes),VariableFeatures(scRNA1))
+</code></pre><p>#细胞周期评分</p>
+<pre><code>g2m_genes = cc.genes$g2m.genes #将g2期的基因列出
+g2m_genes = CaseMatch(search = g2m_genes, match = rownames(scRNA1)) #取交集
+s_genes = cc.genes$s.genes
+s_genes = CaseMatch(search = s_genes, match = rownames(scRNA1))
+
+#使用CellCycleScoring来进行打分，存放到meta.data里 
+scRNA1 &lt;- CellCycleScoring(object=scRNA1,  g2m.features=g2m_genes,  s.features=s_genes)
+</code></pre><p>#查看细胞周期基因对细胞聚类的影响，用周期基因进行PCA降维</p>
+<pre><code>scRNAa &lt;- RunPCA(scRNA1, features = c(s_genes, g2m_genes))
+p &lt;- DimPlot(scRNAa, reduction = &quot;pca&quot;, group.by = &quot;Phase&quot;)
+p
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 16.32.02.png" alt=""></p>
+<p>PCA没有大小之分，正数负数只是一个特征值
+结果显示三个颜色聚集在一起了，说明不同周期细胞对整体影响不大。</p>
+<p><strong>5.4 PCA降维</strong></p>
+<p>PCA1解释最大的数据差异（基本占10%），PCA2占6%，以此类推</p>
+<pre><code>scRNA1 &lt;- RunPCA(scRNA1, features = VariableFeatures(scRNA1)) 
+plot1 &lt;- DimPlot(scRNA1, reduction = &quot;pca&quot;, group.by=&quot;orig.ident&quot;) 
+</code></pre><p><strong>5.5选择合适PC数</strong></p>
+<p>为了克服scRNA序列数据单一特征中的广泛技术噪音，seurat根据其pca分数对细胞进行聚类，每个pc基本表示一个“元特征”，该特征结合了相关特征集上的信息。
+因此，最主要的主成分代表了数据集的强大压缩。但是我们应该判断选择多少个PC合适？
+首先利用ElbowPlot画图选择，可根据自己需要选择主成分，发现第 x个主成分是一个拐点，后续的主成分PC变化都不大。</p>
+<pre><code>ElbowPlot(scRNA1, ndims=50, reduction=&quot;pca&quot;) 
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 16.36.29.png" alt=""></p>
+<p>根据图我们最终选择了前20个PC做下一步分析。</p>
+<p><strong>5.6 聚类分析</strong></p>
+<p>seurat采用的是谱聚类（spectral clustering)，基于共享最近邻图（SNN）和模块化优化的聚类算法来识别细胞簇。
+首先计算k最近邻（k-nearest neighbors）并构造SNN图，然后优化模块化功能以确定具体类群。（构建无向有权图之后在权重低的边缘进行“切图”）.其中resolution参数决定类群的“粒度”，官网建议参数设置在0.4-1.2之间，通常可为包含大约3k个cell的数据机返回良好的聚类结果。对于较大的数据集，最佳resolution通常会增加。</p>
+<pre><code>pc.num=1:20 #选择前20个pc进行构建
+scRNA1 &lt;- FindNeighbors(scRNA1, dims = pc.num)  #构建无向有权图
+scRNA1 &lt;- FindClusters(scRNA1, resolution = 1.0) #进行切图
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 16.39.41.png" alt=""></p>
+<p>结果得到20个cluster</p>
+<h1 id="6-t-sne-umap">6.T-SNE \UMAP</h1>
+<p>目前降维算法主要分为两类：
+（1）在数据中保持距离结构的算法-线性降维（PCA、MDS、Sammon映射）
+（2）在全局距离上保持局部距离的算法（流形学习）-非线性降维（t-SNE、Isomap、LargeVis、Laplacian特征映射和difusion映射）
+其中非线性降维(PCA)目的是为了可视化，而不是特征提取。 t-SNE和UMAP图仅只用于解释或传达基于更精确的、更多维度的定量分析结果。</p>
+<p>t-SNE:使用机器学习的算法来降低维数，适合高纬度数据放到二维或三维空间中可视化展示，并且不会丢失细胞之间的相对距离的信息。例如如果发现用7个pc可以很好表示细胞的多样性，就得需要七个轴或维度来展示细胞的空间分布。
+t-sne能维持细胞在七维空间的关系并在二维图上展示细胞，所以在七维图上相邻的细胞在二维图上仍然相邻。同时pca分析是线性的，t-sne是非线性降维方法。</p>
+<p>UMAP：理论基础是黎曼几何和代数拓扑。优点在于（1）能够尽可能多的保留全局结构，（2）耗时更短，（3）对嵌入维数没有限制可以扩展到更大的维度的数据集（如t-sne）。</p>
+<p><strong>tsne</strong> (基于pca进行降维)</p>
+<pre><code>scRNA1 = RunTSNE(scRNA1, dims = pc.num)
+DimPlot(scRNA1, reduction = &quot;tsne&quot;,label = TRUE) 
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/屏幕快照 2022-09-02 16.44.54.png" alt=""></p>
+<p><strong>UMAP</strong></p>
+<pre><code>scRNA1 &lt;- RunUMAP(scRNA1, dims = pc.num)
+</code></pre><p><img src="https://raw.githubusercontent.com/soonmin94/markdown.img/main/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202022-09-02%2016.47.12.png" alt=""></p>
+<h1 id="7-">7.批次效应</h1>
+<h2 id="7-1-"><strong>7.1 第一种整合方式：锚定点方法整合</strong></h2>
+<p>该方法利用两个或多个独立单细胞测序数据集中存在的少部分属于同一细胞类型的数据点对整个数据集进行“锚定”进而整合，结合可CCA降维和MNN搜索互近邻的方案
+首先该算法以在低维度空间中匹配成功哦那个的互近邻单细胞对为锚点，通过考察每个锚点配对在参考数据和被测数据集中的近邻的交叠率对相应的锚点的可靠性进行评价，形成一个锚点稳健性分数向量；其次，该算法测量被测数据库中的非锚点单细胞与锚点单细胞的距离，在乘以锚点稳健性分数后得到一个锚点权重矩阵，即被测数据库中的每一个非锚点单细胞收到每一个锚点单细胞在数据修正上的影响程度；最后将被测数据库中每个数据点的表达谱减去该数据点对应的锚点权重值与锚点差异值的乘积，即得到细胞类型特异的批次效应修正后的可直接与参考数据集进行整合的表达谱。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041434037.png" alt=""></p>
+<p><strong>7.1.1 创建向量</strong></p>
+<pre><code>创建一个空对象
+x=list.files()
+
+创建向量dir,分别对应的两个相对路径 
+dir = c(&#39;BC2/&#39;, &quot;BC21/&quot;)
+
+对文件夹向量进行命名
+names(dir) = c(&#39;sample2&#39;,  &#39;sample21&#39;)  
+</code></pre><p><strong>7.1.2 读取</strong></p>
+<pre><code>counts &lt;- Read10X(data.dir =dir)
+
+#创建对象
+scRNA1 = CreateSeuratObject(counts,min.cells = 3, min.features = 200)
+
+#创建一个空的对象
+scRNAlist &lt;- list()
+
+#创建循环读取文件
+for(i in 1:length(dir)){
+  counts &lt;- Read10X(data.dir = dir[i])
+  scRNAlist[[i]] &lt;- CreateSeuratObject(counts, min.cells = 3, min.features =300)
+}
+
+</code></pre><p><strong>7.1.3 归一化以及FindVariableFeatures</strong></p>
+<pre><code>for (i in 1:length(scRNAlist)) {
+  scRNAlist[[i]] &lt;- NormalizeData(scRNAlist[[i]])
+  scRNAlist[[i]] &lt;- FindVariableFeatures(scRNAlist[[i]], selection.method = &quot;vst&quot;,nfeatures = 3000)
+}
+</code></pre><p><strong>7.1.4 锚定点寻找</strong></p>
+<p><strong>7.1.4.1 Setup the Seurat objects</strong></p>
+<p>split the dataset into a list of two seurat objects (stim and CTRL)
+split.by=切割的依据是meta.data的列名，可以用colnames(<a href="mailto:scRNA1@meta.data">scRNA1@meta.data</a>)查看列名</p>
+<pre><code>ifnb.list &lt;- SplitObject(scRNA1, split.by = &quot;orig.ident&quot;)  
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437824.png" alt=""></p>
+<p><strong>7.1.4.2 normalize and identify variable features for each dataset independently </strong></p>
+<pre><code>ifnb.list &lt;- lapply(X = ifnb.list, FUN = function(x) {
+  x &lt;- NormalizeData(x)
+  x &lt;- FindVariableFeatures(x, selection.method = &quot;vst&quot;, nfeatures = 2000)
+})
+
+#x=变量，列表中的每个分量进行循环，循环先NormalizeData，再进行FindVariableFeatures，其中高变基因为2000
+</code></pre><p><strong>7.1.4.3 select features that are repeatedly variable across datasets for integration</strong></p>
+<pre><code>features &lt;- SelectIntegrationFeatures(object.list = scRNAlist)
+</code></pre><p><strong>7.1.5 Perform integration </strong></p>
+<pre><code>scRNA.anchors &lt;- FindIntegrationAnchors(object.list = scRNAlist,anchor.features = features)
+</code></pre><p>对数据进行整合参数</p>
+<pre><code>scRNA1 &lt;- IntegrateData(anchorset = scRNA.anchors)
+x=scRNA1@meta.data
+</code></pre><p><strong>7.1.6 聚类、归一化、降维聚类可视化</strong></p>
+<pre><code>#设定后续分析的参数为整合后的
+DefaultAssay(scRNA1) &lt;- &quot;integrated&quot;
+
+#归一化 （integrated里面的scaledata）
+scRNA1=ScaleData(scRNA1)
+
+#pca降维
+scRNA1 &lt;- RunPCA(scRNA1, npcs = 30, verbose = T)
+
+#umap可视化聚类，t-SNE and Clustering
+scRNA1 &lt;- FindNeighbors(scRNA1, reduction = &quot;pca&quot;, dims = 1:20)
+scRNA1 &lt;- FindClusters(scRNA1, resolution = 0.8)
+scRNA1 &lt;- RunUMAP(scRNA1, reduction = &quot;pca&quot;, dims = 1:20)
+scRNA1 &lt;- RunTSNE(scRNA1, dims = 1:20)
+
+DimPlot(scRNA1, reduction = &quot;umap&quot;, group.by = &quot;orig.ident&quot;)
+DimPlot(scRNA1, reduction = &quot;umap&quot;, label = TRUE)
+</code></pre><p>去除批次效应后的结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437825.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437826.png" alt=""></p>
+<h2 id="7-2-sctransform-integrated">7.2 基于sctransform的结合integrated</h2>
+<p>和第一种方式的不同点：
+1）sctransform的归一化方法是sct不是nomalized；
+2）选择的是3000高变基因或者更多基因进行后续分析
+3）找锚定点之前需要进行PrepSCTIntegration函数
+4）FindIntegrationAnchors and IntegrateData 函数在normalization.method参数要改为SCT
+5）do not run the ScaleData</p>
+<p>#Setup the Seurat objects</p>
+<pre><code>ifnb.list &lt;- SplitObject(ifnb, split.by = &quot;stim&quot;)
+</code></pre><p>#sctransform</p>
+<pre><code>ifnb.list &lt;- lapply(X = ifnb.list, FUN = SCTransform)
+</code></pre><p>#select features that are repeatedly variable across datasets for integration</p>
+<pre><code>features &lt;- SelectIntegrationFeatures(object.list = ifnb.list, nfeatures = 3000)
+</code></pre><p>#预备找锚定点</p>
+<pre><code>ifnb.list &lt;- PrepSCTIntegration(object.list = ifnb.list, anchor.features = features)
+</code></pre><p>#Perform integration </p>
+<pre><code>immune.anchors &lt;- FindIntegrationAnchors(object.list = ifnb.list, normalization.method = &quot;SCT&quot;,
+                                         anchor.features = features)
+</code></pre><p>#整合</p>
+<pre><code>immune.combined.sct &lt;- IntegrateData(anchorset = immune.anchors, normalization.method = &quot;SCT&quot;)
+</code></pre><p>#PCA降维聚类</p>
+<pre><code>immune.combined.sct &lt;- RunPCA(immune.combined.sct, verbose = FALSE)
+scRNA1 &lt;- FindNeighbors(scRNA1, reduction = &quot;pca&quot;, dims = 1:20)
+scRNA1 &lt;- FindClusters(scRNA1, resolution = 0.8)
+</code></pre><p>#可视化</p>
+<pre><code>immune.combined.sct &lt;- RunUMAP(immune.combined.sct, reduction = &quot;pca&quot;, dims = 1:30)
+
+p1 &lt;- DimPlot(immune.combined.sct, reduction = &quot;umap&quot;, group.by = &quot;stim&quot;)
+p2 &lt;- DimPlot(immune.combined.sct, reduction = &quot;umap&quot;, group.by = &quot;seurat_annotations&quot;, label = TRUE,
+              repel = TRUE)
+p1 + p2
+
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437828.png" alt=""></p>
+<h2 id="7-3-harmony">7.3 harmony</h2>
+<p>省内存，速度快，对稀有细胞敏感性很好；但是只能单核跑</p>
+<p>基本原理：</p>
+<p>（A）概率性将细胞分配给cluster，从而使每个cluster内数据集的多样性最大化；
+（B）计算每个cluster的所有数据集的全局中心
+（C）每个cluster中，harmony基于中心为每个数据集计算校正因子
+（D）最后使用基于C的特定细胞的因子校正每个细胞。由于harmony使用软聚类，因此可以通过多个因子的线性组合对其A中进行的软聚类分配进行线性校正，来修正每个单细胞。重复步骤A到D，知道收敛位置。聚类分配和数据集之间的依赖性随着每一轮的减少而见减小。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437829.png" alt=""></p>
+<pre><code>#加载r包
+library(harmony)
+
+#读取数据
+scRNA.11=Read10X(&quot;BC2/&quot;)
+scRNA.3=Read10X(&quot;BC21/&quot;)
+
+</code></pre><p>#分别创建两个对象</p>
+<pre><code>scRNA.11 = CreateSeuratObject(scRNA.11 ,project=&quot;sample_11&quot;,min.cells = 3, min.features = 200)
+scRNA.3 = CreateSeuratObject(scRNA.3 ,project=&quot;sample_3&quot;,min.cells = 3, min.features = 200)
+</code></pre><p>#对多个样本进行合并merge</p>
+<pre><code>scRNA_harmony &lt;- merge(scRNA.11, y=c(scRNA.3 ))
+</code></pre><p>#NormalizeData-FindVariableFeatures-ScaleData-RunPCA</p>
+<pre><code>scRNA_harmony &lt;- NormalizeData(scRNA_harmony) %&gt;% FindVariableFeatures() %&gt;% ScaleData() %&gt;% RunPCA(verbose=FALSE)
+</code></pre><p>#harmony整合</p>
+<p>是基于pca结果进行批次效应矫正，消除批次效应本质的是pca的维度信息</p>
+<pre><code>scRNA_harmony &lt;- RunHarmony(scRNA_harmony, group.by.vars = &quot;orig.ident&quot;)
+</code></pre><p>#构建无向有权图FindNeighbors-聚类FindClusters</p>
+<pre><code>scRNA_harmony &lt;- FindNeighbors(scRNA_harmony, reduction = &quot;harmony&quot;, dims = 1:15) %&gt;% FindClusters(resolution = 0.5)
+</code></pre><p>#umap</p>
+<pre><code>scRNA_harmony &lt;- RunUMAP(scRNA_harmony, reduction = &quot;harmony&quot;, dims = 1:16)
+</code></pre><p>#可视化</p>
+<pre><code>plot1 =DimPlot(scRNA_harmony, reduction = &quot;umap&quot;,label = T) 
+plot2 = DimPlot(scRNA_harmony, reduction = &quot;umap&quot;, group.by=&#39;orig.ident&#39;) 
+plotc &lt;- plot1+plot2
+plotc
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437830.png" alt=""></p>
+<h1 id="8-">8.细胞注释</h1>
+<h2 id="8-1-">8.1识别每个类群的全部标记物</h2>
+<p>通常推荐用于评估单个样本组/条件。</p>
+<p>通过findallmarkers函数，我们将每个类群与所有其他类群进行比较，以确定潜在的标记基因。每个类群中的细胞被视为重复，本质上使用一些统计检验进行差异表达分析。默认为silcoxon检验。</p>
+<p>findallmarkers有三个重要参数：</p>
+<p>1）logfc.threshold：类群中基因的平均表达量相对于所有其他类群的平均表达量的最小log2倍数。默认值为0.25.
+缺点：如果平均log2fc不符合阈值，可能会错过那些在感兴趣的聚类中小部分细胞表达，但在其他聚类中没有表达的细胞标记。
+由于不同细胞类型的代谢输出略有差异，可能会返回大量代谢/核糖体基因，这对区分细胞类型的身份没有那么有用。</p>
+<p>2）min.diff.pct：该类群中表达该基因的细胞百分比与其他类群中表达该基因的细胞百分比之间的最小差异。
+缺点：可能漏掉那些在所有细胞中表达，但在该特定细胞类型中高度上调的细胞标记。</p>
+<p>3）min.pct：只检验两个类群中任何一个类群中最少部分细胞中检测到的基因。旨在通过不检验那些表达频率很低的基因来加速函数运行。默认值0.1
+缺点：如果设置为一个很高的值，可能会产生很多假阴性，因为不是所有的基因都会在所有的细胞中检测到。</p>
+<p><strong>寻找marker gene</strong></p>
+<pre><code>markers &lt;- FindAllMarkers(object = scRNA_harmony, test.use=&quot;wilcox&quot; ,
+                          only.pos = TRUE,
+                          logfc.threshold = 0.25)  
+
+#logfc.threshold = 0.25，单细胞中很多差异基因不是那么明显，所以会把阈值降低
+only.pos = TRUE 自动过滤
+marker基因是基于RNA中的data计算的
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437831.png" alt=""></p>
+<p>avg_log2fc：表示这个基因在特定cluster中相比于其他全部cluster升高了多少倍。
+pct1：表示这个基因在特定cluster中的表达与其他cluster占有的百分比，比如在o这个cluster中有78.8%表达apoc1这个基因。
+pct2：在除了0这个cluster以外有21.6%表达apoc1这个基因</p>
+<p><strong>筛选marker基因</strong></p>
+<p>subset 筛选(p_val&lt;0.05)</p>
+<pre><code>all.markers =markers %&gt;% dplyr::select(gene, everything()) %&gt;% subset(p_val&lt;0.05)
+</code></pre><p><strong>top10的marker筛选</strong></p>
+<pre><code>top10 = all.markers %&gt;% group_by(cluster) %&gt;% top_n(n = 10, wt = avg_log2FC)
+
+#group_by(cluster)分组
+#top_n 筛选top n
+</code></pre><p><strong>然后就根据文献等进行细胞注释</strong></p>
+<pre><code>scRNA_harmony@meta.data$seurat_clusters
+
+scRNA_harmony &lt;- RenameIdents(scRNA_harmony, &quot;12&quot; = &quot;Macrophage&quot;,&quot;0&quot;=&quot;Macrophage&quot;,&quot;2&quot;=&quot;MSc&quot;)
+
+</code></pre><h2 id="8-2-">8.2 识别所有条件下保留的标记物</h2>
+<pre><code>#需要先用harmony,指定active.ident
+scRNA_harmony@meta.data$celltype=scRNA_harmony@active.ident
+
+
+DefaultAssay(scRNA_harmony) &lt;- &quot;RNA&quot; 
+#这个函数默认设置是从 &quot;RNA &quot;插槽中获取数据，以防止在分析的上游某处改变了默认分析。
+</code></pre><p>每次只能针对一个cluster寻找 ident.1 = 1,还要指明是meta.data的哪一列，写出分组信息的那一列即可</p>
+<pre><code>marker2= FindConservedMarkers(scRNA_harmony,
+                              ident.1 = 1,
+                              grouping.var = &quot;orig.ident&quot;,
+                              only.pos = TRUE,
+                              min.diff.pct = 0.25,
+                              min.pct = 0.25,
+                              logfc.threshold = 0.25) 
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437832.png" alt=""></p>
+<p>得到的是一个矩阵，包含了一个按基因ID列出的假定标记物的排序列表，以及相关的统计数字。注意，每个组都计算了同一组统计数字，最后两列对应的是两组之间的综合p值。我们将在下面描述其中的一些列名。</p>
+<ul>
+<li><strong>gene</strong>：基因符号</li>
+<li><strong>condition_p_val</strong>: 未根据条件进行多重检验校正调整的p值</li>
+<li><strong>condition_avg_logFC</strong>：条件的平均log2倍数变化。正值表示该基因在类群中表达较高。</li>
+<li><strong>condition_pct.1</strong>：在条件下检测到该基因在类群中的细胞表达百分比。</li>
+<li><strong>condition_pct.2</strong>：在条件的其他群组中平均检测到该基因的细胞表达百分比</li>
+<li><strong>condition_p_val_adj</strong>：条件的调整后的p值，基于bonferroni校正，使用数据集中的所有基因，用于确定显著性</li>
+<li><strong>max_pval</strong>: 各组/条件计算出的最大p值的p值。</li>
+<li><strong>minimump_p_val</strong>: 合并的p值</li>
+</ul>
+<blockquote>
+<p><strong>注：</strong>由于每个细胞被当作一次重复处理，这将导致每个组内的p值被夸大！一个基因可能有一个非常低的p值&lt;1e-50，但并不能转化为高度可靠的标记基因。</p>
+</blockquote>
+<p>在看输出时，我们建议寻找<code>pct.1</code>和<code>pct.2</code>之间表达差异较大的标记基因，以及较大的倍数变化。</p>
+<p>例如，如果<code>pct.1</code> = 0.90，<code>pct.2</code> = 0.80，可能就不是那么需要注意的标记基因。然而，如果<code>pct.2</code>=0.1的话，差异更大，更有说服力。</p>
+<p>另外，如果大多数表达该标记的细胞在感兴趣的聚类中是比较有意义的。如果<code>pct.1</code>很低，比如0.3，可能就没有那么值得注意了。这两个参数也是如上所述运行函数时可能包含的参数。</p>
+<h2 id="8-3-">8.3 根据已公开发表的文章进行判断</h2>
+<p>文章中已经注释好的，复制基因过来，但这样存在主观性</p>
+<pre><code>Osteoblastic = c(&quot;COL1A1&quot;,&quot;CDH11&quot;,&quot;RUNX2&quot;)
+</code></pre><p>使用DotPlot气泡图来判断</p>
+<pre><code>DotPlot(scRNA_harmony, features = Osteoblastic) + RotatedAxis()
+#气泡越大=比例越大，表达水平越高颜色越深
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437833.png" alt=""></p>
+<p>对cluster进行注释</p>
+<pre><code>scRNA_harmony &lt;- RenameIdents(scRNA_harmony, &quot;11&quot; = &quot;Osteoblastic&quot;,&quot;1&quot;=&quot;T&quot;)
+DimPlot(scRNA_harmony)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437834.png" alt=""></p>
+<h2 id="8-4-singler-1">8.4 SingleR-1</h2>
+<p>自动注释，基于与参考集的相似性来标记来自测试数据集的新的细胞。
+1）计算其表达谱与各参考样本表达谱之间的spearman相关性。通过在所有标记对之间识别的marker基因的并集完成的
+2）将每个标签的得分（per-label score）定义为相关性分布的固定分位数
+3）对所有标签（labels）重复此操作，并将得分最高的标签作为该单细胞的注释</p>
+<pre><code>library(SingleR)
+
+x=HumanPrimaryCellAtlasData()
+</code></pre><p>load加载data</p>
+<pre><code>load(&quot;ref_Human_all.RData&quot;)
+</code></pre><p>环境中的ref_Human_all赋值refdata</p>
+<pre><code>refdata &lt;- ref_Human_all
+</code></pre><p>表达数据提取</p>
+<pre><code>testdata &lt;- GetAssayData(scRNA_harmony, slot=&quot;data&quot;)
+</code></pre><p>seurat_clusters提取</p>
+<pre><code>clusters &lt;- scRNA_harmony@meta.data$seurat_clusters
+</code></pre><p>singler分析</p>
+<pre><code>cellpred &lt;- SingleR(test = testdata, ref = refdata, labels = refdata$label.main, 
+                    method = &quot;cluster&quot;, clusters = clusters, 
+                    assay.type.test = &quot;logcounts&quot;, assay.type.ref = &quot;logcounts&quot;)
+</code></pre><p>细胞类型的注释文件</p>
+<pre><code>celltype = data.frame(ClusterID=rownames(cellpred), celltype=cellpred$labels, stringsAsFactors = FALSE)
+
+</code></pre><p>meta.data中增加新的列celltype，用“$“，且都为na值</p>
+<pre><code>scRNA_harmony@meta.data$celltype =&quot;NA&quot;
+
+for(i in 1:nrow(celltype)){
+  scRNA_harmony@meta.data[which(scRNA_harmony@meta.data$seurat_clusters == celltype$ClusterID[i]),&#39;celltype&#39;] &lt;- celltype$celltype[i]
+}
+
+#celltype$celltype[i]         
+把celltype中的celltype内容进行提取
+
+#which(scRNA_harmony@meta.data$seurat_clusters == celltype$ClusterID[i]) 
+判断 celltype数据框中的ClusterID的第一个元素（cluster=0）是否与 scRNA_harmony@meta.data$seurat_clusters 匹配，
+然后输出位置信息
+
+#scRNA_harmony@meta.data数据框中，匹配的cluster，celltype赋值
+</code></pre><p>可视化</p>
+<pre><code>DimPlot(scRNA_harmony, group.by=&quot;celltype&quot;, label=T, label.size=5)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437835.png" alt=""></p>
+<h2 id="8-5-singler-2">8.5 SingleR-2</h2>
+<p>目的是使用一个预先标记好的数据集对另一个未标记的数据集进行细胞类型注释</p>
+<pre><code>library(Seurat)
+library(tidyverse)
+library(dplyr)
+library(patchwork)
+library(SingleR)
+library(org.Hs.eg.db)
+library(scRNAseq)
+library(scater)
+</code></pre><p>加载数据，用MuraroPancreasData</p>
+<pre><code>sceM &lt;- MuraroPancreasData()
+</code></pre><p>移除未标记的细胞</p>
+<pre><code>sceM.1 &lt;- sceM[,!is.na(sceM$label)]
+</code></pre><p>对表达矩阵取log Normalized Counts，简单的归一化</p>
+<pre><code>sceM.1 &lt;- logNormCounts(sceM.1)
+</code></pre><p>使用Grun et al.(2016)的数据作为测试数据集</p>
+<pre><code>sceG &lt;- GrunPancreasData()
+
+#过滤低质量细胞
+sceG &lt;- sceG[,colSums(counts(sceG)) &gt; 0] 
+
+#对表达矩阵取log Normalized Counts，简单的归一化处理
+sceG &lt;- logNormCounts(sceG) 
+
+</code></pre><p>使用SingleR函数进行细胞类型注释，并指定de.method=&quot;wilcox&quot;检测方法</p>
+<pre><code>pred.grun &lt;- SingleR(test=sceG, ref=sceM.1, labels=sceM.1$label, de.method=&quot;wilcox&quot;)
+</code></pre><p>查看细胞类型注释的预测结果</p>
+<pre><code>table(pred.grun$labels)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437836.png" alt=""></p>
+<p>画plotScoreHeatmap，横纵坐标对应不同数据集的label信息</p>
+<p>理想情况下，每个细胞（即热图的列）应具有一个明显比其他细胞高的分数，这表明它已被明确地分配给单个标签。</p>
+<pre><code>plotScoreHeatmap(pred.grun)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437837.png" alt=""></p>
+<p>使用pruneScores()函数删除质量低下或模棱两可的分配 (但有时候这也有可能是新的细胞类型)</p>
+<pre><code>remove.cell &lt;- pruneScores(pred.grun)
+summary(remove.cell)
+</code></pre><p>通过使用具有相同标签的细胞中的信息来帮助确定阈值是否合适。这将显示每个标记的跨细胞分布，其中<code>pruneScores()</code>函数以低于3个中位数绝对偏差（MAD）值来定义适当的阈值。</p>
+<pre><code>plotScoreDistribution(pred.grun, ncol =5, show.nmads = 3)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437838.png" alt=""></p>
+<p>将要丢弃的标签设置为NA,重新过滤好剩下的marker</p>
+<pre><code>new.pruned &lt;- pred.grun$labels
+new.pruned[pruneScores(pred.grun, nmads=5)] &lt;- NA
+
+table(new.pruned, useNA=&quot;always&quot;)
+
+
+all.markers &lt;- metadata(pred.grun)$de.genes
+sceG$labels &lt;- pred.grun$labels
+</code></pre><p>展示各个cluster的marker</p>
+<p>另一个简单而有效的诊断方法是检查测试数据集中每个标记的marker基因的表达。我们从SingleR()结果的元数据中提取标记的标识，并使用scater包中的<code>plotHeatmap()</code>函数进行可视化展示。如果测试数据集中的某个细胞确信地分配给了特定标签，我们希望标记为该标签的marker基因具有很高的表达。</p>
+<pre><code>for (lab in unique(pred.grun$labels)) {
+  plotHeatmap(sceG, order_columns_by=list(I(pred.grun$labels)), 
+              features=unique(unlist(all.markers[[lab]]))) 
+}
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041437839.png" alt=""></p>
+<h2 id="8-6-azimuth-">8.6 Azimuth注释</h2>
+<p>使用锚点整合的方法对单细胞进行预测，可以手动细胞注释结果的参考
+预测网站 <a href="https://satijalab.org/azimuth/">https://satijalab.org/azimuth/</a></p>
+<p>其他不断进展也会有新的细胞注释方法，建议多看文献多学习～</p>
+<h1 id="9-marker-">9 marker基因展示</h1>
+<pre><code>library(Seurat)
+</code></pre><h2 id="9-1-">9.1 峰峦图</h2>
+<pre><code>#Ridge plots - from ggridges. Visualize single cell expression distributions in each cluster
+RidgePlot(pbmc3k.final, features = features, ncol = 2)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442995.png" alt=""></p>
+<h2 id="9-2-">9.2 小提琴图</h2>
+<pre><code># Violin plot - Visualize single cell expression distributions in each cluster
+VlnPlot(pbmc3k.final, features = features, ncol = 2)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442996.png" alt=""></p>
+<h2 id="9-3-">9.3 维度图</h2>
+<pre><code># Feature plot - visualize feature expression in low-dimensional space
+FeaturePlot(pbmc3k.final, features = features,reduction = &quot;tsne&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442997.png" alt=""></p>
+<h2 id="9-4-">9.4 气泡图</h2>
+<pre><code># Dot plots - the size of the dot corresponds to the percentage of cells expressing the
+# feature in each cluster. The color represents the average expression level
+
+DotPlot(pbmc3k.final, features = features) + RotatedAxis()
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442998.png" alt=""></p>
+<h2 id="9-5-">9.5 热图</h2>
+<pre><code># Single cell heatmap of feature expression
+DoHeatmap(subset(pbmc3k.final, downsample = 100), features = features, size = 3)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442999.png" alt=""></p>
+<h2 id="9-6-">9.6 特定基因维度图</h2>
+<pre><code># Plot a legend to map colors to expression levels
+FeaturePlot(pbmc3k.final, features = &quot;MS4A1&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442000.png" alt=""></p>
+<h2 id="9-7-">9.7 自定义分位数维度图</h2>
+<pre><code># Calculate feature-specific contrast levels based on quantiles of non-zero expression.
+# Particularly useful when plotting multiple markers
+
+FeaturePlot(pbmc3k.final, features = c(&quot;MS4A1&quot;, &quot;PTPRCAP&quot;), min.cutoff = &quot;q10&quot;, max.cutoff = &quot;q90&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442001.png" alt=""></p>
+<h2 id="9-8-">9.8 共表达情况</h2>
+<pre><code># Visualize co-expression of two features simultaneously
+FeaturePlot(pbmc3k.final, features = c(&quot;MS4A1&quot;, &quot;CD79A&quot;), blend = TRUE)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442002.png" alt=""></p>
+<h2 id="9-9-">9.9 分割图</h2>
+<pre><code># Split visualization to view expression by groups (replaces FeatureHeatmap)
+FeaturePlot(pbmc3k.final, features = c(&quot;MS4A1&quot;, &quot;CD79A&quot;), split.by = &quot;groups&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442004.png" alt=""></p>
+<h2 id="9-10-heatmap-1">9.10 heatmap自定义-1</h2>
+<p>![屏幕快照 2022-09-03 14.49.43](/Users/soonmin/Desktop/machine/code class/total-hcm/sup/lession7/photo/屏幕快照 2022-09-03 14.49.43.png</p>
+<p>(此处示例的scRNA1是已经经过前期归一化 细胞注释 降维聚类后的文件)</p>
+<p>将active.ident更改为celltype</p>
+<pre><code>Idents(scRNA1)= &quot;celltype&quot;
+DimPlot(scRNA1)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442005.png" alt=""></p>
+<p>找marker基因</p>
+<pre><code>degs &lt;- FindAllMarkers(scRNA1, logfc.threshold = 0.5,
+                       test.use = &quot;roc&quot;, 
+                       return.thresh = 0.25, 
+                       min.pct = 0.3, only.pos = T) 
+</code></pre><p>筛选差异gene </p>
+<pre><code>degs_sig &lt;- degs %&gt;% 
+  filter(pct.1 &gt; 0.3 &amp;
+           power &gt; 0.25) %&gt;%
+  filter(cluster != &quot;other&quot;) %&gt;%
+  arrange(cluster, -power) 
+</code></pre><p>挑选top50</p>
+<pre><code>  degs_top50 &lt;- degs_sig %&gt;% 
+  group_by(cluster) %&gt;% 
+  top_n(50, power) %&gt;%
+  top_n(50, avg_diff) %&gt;%
+  arrange(cluster, -power)
+</code></pre><p>avgData 平均值</p>
+<pre><code>avgData &lt;- scRNA1@assays$RNA@data[degs_top50$gene,] %&gt;% 
+  apply(1, function(x){
+    tapply(x, scRNA1$celltype, mean) # 按照celltype分组对每个基因进行平均值计算
+  }) %&gt;% t
+</code></pre><p>最大和最小数据进行scale</p>
+<pre><code>phData &lt;- MinMax(scale(avgData), -2, 2) 
+rownames(phData) &lt;- 1:nrow(phData)
+</code></pre><p>热图</p>
+<pre><code>library(pheatmap)
+phres &lt;- pheatmap(
+  phData, 
+  color = colorRampPalette(c(&quot;darkblue&quot;, &quot;white&quot;, &quot;red3&quot;))(99), 
+  scale = &quot;row&quot;,
+  cluster_rows = F, 
+  cluster_cols = T, 
+  clustering_method = &quot;complete&quot;,
+  show_rownames = F, 
+  annotation_row = data.frame(cluster = degs_top50$cluster), 
+)  
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442006.png" alt=""></p>
+<h2 id="9-11-heatmap-2">9.11 heatmap自定义-2</h2>
+<pre><code>library(Seurat)
+Idents(scRNA1)=&quot;celltype&quot; 
+
+#marker 基因
+marker=FindAllMarkers(scRNA1,logfc.threshold = 0.5)
+
+#找每组前10个基因
+top10 &lt;-  marker  %&gt;% group_by(cluster) %&gt;% top_n(n = 10, wt = avg_log2FC)
+
+#维度图
+DimPlot(scRNA1, reduction = &quot;tsne&quot;, group.by = &quot;celltype&quot;, pt.size=1)+theme(
+  axis.line = element_blank(),
+  axis.ticks = element_blank(),axis.text = element_blank()
+)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442007.png" alt=""></p>
+<p>top10基因热图</p>
+<pre><code>DoHeatmap(scRNA1,features = top10$gene,label = F,slot = &quot;scale.data&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442008.png" alt=""></p>
+<p>可以看见每个cluster的细胞数不同，所以需要提取固定的细胞数</p>
+<pre><code>scRNA1=subset(scRNA1, downsample = 150)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442009.png" alt=""></p>
+<h2 id="9-12-vlnplot-">9.12 VlnPlot自定义</h2>
+<pre><code>library(reshape2)
+
+#提取每个cluster（5个cluster）中top10的2个
+top10 &lt;-  marker  %&gt;% group_by(cluster) %&gt;% top_n(n = 2, wt = avg_log2FC)
+
+#表达矩阵提取
+vln.df=as.data.frame(scRNA1[[&quot;RNA&quot;]]@data[top10$gene[1:10],])
+
+#增加一列gene
+vln.df$gene=rownames(vln.df)
+
+#宽窄矩阵转换
+vln.df=melt(vln.df,id=&quot;gene&quot;)
+colnames(vln.df)[c(2,3)]=c(&quot;barcode&quot;,&quot;exp&quot;)
+
+#提取meta.data
+anno=scRNA1@meta.data
+anno$barcode=rownames(anno)
+
+#使用inner_join进行合并（和merge函数一样的功能）
+vln.df=inner_join(vln.df,anno,by=&quot;barcode&quot;)
+
+</code></pre><pre><code>#可视化
+vln.df%&gt;%ggplot(aes(celltype,exp))+geom_violin(aes(fill=gene),scale = &quot;width&quot;)+
+  facet_grid(vln.df$gene~.,scales = &quot;free_y&quot;)+
+  scale_fill_brewer(palette = &quot;Set3&quot;,direction = 1)+
+  scale_x_discrete(&quot;&quot;)+scale_y_continuous(&quot;&quot;)+
+  theme_bw()+
+  theme(
+    axis.text.x.bottom = element_text(angle = 45,hjust = 1,vjust = 1),
+    panel.grid.major = element_blank(),panel.grid.minor = element_blank(),
+    legend.position = &quot;none&quot;
+  )
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442010.png" alt=""></p>
+<p>#aes 轴=（横，纵）</p>
+<p>#+加上内容</p>
+<p>#geom_violin 小提琴图，aes(fill=gene) 轴按照基因来画图，scale按照宽度进行放缩</p>
+<p>#facet_grid 进行切图</p>
+<p>#scale_fill_brewer 颜色调整</p>
+<p>#scale_x_discrete(&quot;&quot;)+scale_y_continuous(&quot;&quot;) 删除x y坐标</p>
+<h2 id="9-13-">9.13 气泡图自定义</h2>
+<pre><code>#top10基因表达量按数据框方式提取
+bubble.df=as.matrix(scRNA1[[&quot;RNA&quot;]]@data[ top10$gene[1:10],])
+
+#行列转置
+bubble.df=t(bubble.df)
+
+#转换为data.frame
+bubble.df=as.data.frame(scale(bubble.df))
+
+#添加CB一列到数据中
+bubble.df$CB=rownames(bubble.df)
+
+#将bubble.df 和meta.data共同形式进行合并
+bubble.df=merge(bubble.df,scRNA1@meta.data[,c(1,6)],by.x = &quot;CB&quot;,by.y = 0)
+
+#删除CB一列
+bubble.df$CB=NULL
+
+
+</code></pre><pre><code>#创建四个向量
+celltype_v=c()
+gene_v=c()
+mean_v=c()
+ratio_v=c()  #表达的百分比
+
+#计算每个向量
+for (i in unique(bubble.df$celltype)) {
+  bubble.df_small=bubble.df%&gt;%filter(celltype==i)
+  for (j in top10$gene[1:10]) {
+    exp_mean=mean(bubble.df_small[,j]) 
+    exp_ratio=sum(bubble.df_small[,j] &gt; min(bubble.df_small[,j])) / length(bubble.df_small[,j])    
+    celltype_v=append(celltype_v,i)  ##Add elements to a vector.
+    gene_v=append(gene_v,j)
+    mean_v=append(mean_v,exp_mean)
+    ratio_v=append(ratio_v,exp_ratio)
+  }
+}
+
+#赋值向量
+plotdf=data.frame(
+  celltype=celltype_v,
+  gene=gene_v,
+  exp=mean_v,
+  ratio=ratio_v
+)
+</code></pre><p>#可视化</p>
+<pre><code>#geom_point() 散点图 和点颜色合并，相当于气泡图
+
+plotdf%&gt;%ggplot(aes(x=celltype,y=gene,size=ratio,color=exp))+geom_point()+
+  scale_x_discrete(&quot;&quot;)+scale_y_discrete(&quot;&quot;)+
+  scale_size_continuous(limits = c(0,1))+theme_classic()
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442011.png" alt=""></p>
+<h2 id="9-14-">9.14 维度图自定义</h2>
+<pre><code>#提取基因的表达量
+mat1=as.data.frame(scRNA1[[&quot;RNA&quot;]]@data[&quot;Rbp1&quot;,])
+
+colnames(mat1)=&quot;exp&quot;
+
+#提取Embeddings信息
+mat2=Embeddings(scRNA1,&quot;tsne&quot;)
+mat3=merge(mat2,mat1,by=&quot;row.names&quot;)
+</code></pre><p>可视化</p>
+<pre><code>mat3%&gt;%ggplot(aes(tSNE_1,tSNE_2))+geom_point(aes(color=exp))+
+  scale_color_gradient(low = &quot;grey&quot;,high = &quot;purple&quot;)+theme_bw()+ 
+  theme(  
+    panel.grid.major = element_blank(),panel.grid.minor = element_blank(),  
+    plot.title = element_text(hjust = 0.5,size=14)  
+  )
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041442012.png" alt=""></p>
+<h2 id="9-15-1">9.15 比例图自定义-1</h2>
+<pre><code>#调用颜色
+library(RColorBrewer)
+
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == &#39;qual&#39;,]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals))) 
+
+</code></pre><pre><code>library(reshape2)
+
+#创建table，列为new.celltype.2以及行为type，然后宽窄矩阵转换
+pB2_df &lt;- table(sc.combined@meta.data$new.celltype.2,sc.combined@meta.data$type) %&gt;% melt()
+
+#加上列名
+colnames(pB2_df) &lt;- c(&quot;Cluster&quot;,&quot;Sample&quot;,&quot;Number&quot;)
+
+#按照cluster顺序排列表格
+pB2_df$Cluster &lt;- factor(pB2_df$Cluster,levels = pB2_df$Cluster[1:6])
+pB2_df$Cluster &lt;- factor(pB2_df$Cluster,levels = c(&quot;Endothelial&quot;,&quot;Epithelial&quot;,&quot;Goblet&quot;,&quot;MSC&quot;,&quot;Stem_cell&quot;,&quot;T_NK&quot;))
+</code></pre><pre><code>#调用9个颜色
+sample_color &lt;- col_vector[1:9] 
+</code></pre><p>可视化</p>
+<pre><code>pB2 &lt;- ggplot(data = pB2_df, aes(x = Cluster, y = Number, fill = Sample)) +
+  geom_bar(stat = &quot;identity&quot;, width=0.8,position=&quot;fill&quot;)+  
+  #stat = &quot;identity&quot; 比例，position=&quot;fill&quot; 填充内容按照fill
+  scale_fill_manual(values=sample_color) + 
+  theme_bw()+ #主题
+  theme(panel.grid =element_blank()) + #背景
+  labs(x=&quot;&quot;,y=&quot;Ratio&quot;)+ 
+  theme(axis.text.y = element_text(size=12, colour = &quot;black&quot;))+
+  theme(axis.text.x = element_text(size=12, colour = &quot;black&quot;))+
+  theme(
+    axis.text.x.bottom = element_text(hjust = 1, vjust = 1, angle = 45)
+  ) 
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447288.png" alt=""></p>
+<h2 id="9-16-2">9.16 比例图自定义-2</h2>
+<pre><code>pB4 &lt;- ggplot(data = pB2_df, aes(x =Number, y = Sample, fill =  Cluster)) + 
+#按照cluster分组
+  geom_bar(stat = &quot;identity&quot;, width=0.8,position=&quot;fill&quot;)+
+  scale_fill_manual(values=col_vector[1:20]) +
+  theme_bw()+
+  theme(panel.grid =element_blank()) +
+  labs(x=&quot;&quot;,y=&quot;Ratio&quot;)+
+  theme(axis.text.y = element_text(size=12, colour = &quot;black&quot;))+
+  theme(axis.text.x = element_text(size=12, colour = &quot;black&quot;))+
+  theme(
+    axis.text.x.bottom = element_text(hjust = 1, vjust = 1, angle = 45)
+  ) 
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447289.png" alt=""></p>
+<p>可在此基础上增加每个组情况</p>
+<pre><code>library(reshape2)
+
+pB2_df &lt;- table(sc.combined@meta.data$new.celltype.2,sc.combined@meta.data$orig.ident) %&gt;% melt()
+colnames(pB2_df) &lt;- c(&quot;Cluster&quot;,&quot;Sample&quot;,&quot;Number&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447290.png" alt=""></p>
+<h2 id="9-17-3">9.17 比例图自定义-3</h2>
+<pre><code>#针对不同细胞类型分组差异结果
+x &lt;- table(sc.combined@meta.data$new.celltype.2,sc.combined@meta.data$orig.ident)
+
+#计算每个细胞类型在该样本中的比例。
+x3= t(t(x)/rowSums(t(x)))  #ex.10/（10+17+6）（FMT总的细胞数）
+
+#转data.frame 
+x4 = as.data.frame(as.table(t(x3)))
+colnames(x4) = c(&quot;sample&quot;,&quot;celltype&quot;,&quot;Freq&quot;)
+
+#_.*替换为空格；相当于提取到了样本所在的分组信息
+x4$group = x4$sample %&gt;% str_replace(&quot;_.*&quot;,&quot;&quot;)
+
+#计算bar值
+top&lt;-function(x){
+  return(mean(x)+sd(x)/sqrt(length(x))) #上是平均值+方差
+}
+bottom&lt;-function(x){
+  return(mean(x)-sd(x)/sqrt(length(x))) #下是平均值-方差
+}
+
+#提取FMT、GF、SPF
+dose_FMT&lt;-x4[which(x4$group==&quot;FMT&quot;),] 
+dose_GF&lt;-x4[which(x4$group==&quot;GF&quot;),]
+dose_SPF&lt;-x4[which(x4$group==&quot;SPF&quot;),]
+
+#去na
+dose_FMT=na.omit(dose_FMT)
+</code></pre><p>可视化</p>
+<pre><code>ggplot(data=dose_FMT,aes(x=celltype,y=Freq,fill=celltype))+
+  stat_summary(geom = &quot;bar&quot;,fun = &quot;mean&quot;,                 #bar值
+               position = position_dodge(0.9))+
+  stat_summary(geom = &quot;errorbar&quot;,
+               fun.min = bottom,                          #刚刚计算的点的位置
+               fun.max = top,
+               position = position_dodge(0.9),
+               width=0.2)+
+  scale_y_continuous(expand = expansion(mult = c(0,0.1)))+        
+  theme_bw()+
+  theme(panel.grid = element_blank())+
+  labs(x=&quot;Celltype&quot;,y=&quot;Proportion&quot;)+
+  geom_point(data=dose_FMT,aes(celltype,Freq),size=3,pch=19)+   
+  #样本具体细胞比例显示
+  theme(
+    axis.text.x.bottom = element_text(hjust = 1, vjust = 1, angle = 45)
+  ) +ggtitle(&quot;FMT&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447291.png" alt=""></p>
+<h2 id="9-18-t-sne-1">9.18 T-SNE自定义-1</h2>
+<pre><code>library(cowplot)
+
+#提取active.ident 
+x=as.data.frame(scRNA1@active.ident)
+
+#将tsn的两个维度进行提取
+df &lt;- scRNA1@reductions$tsne@cell.embeddings
+
+#将tsn和active.ident信息合并
+df &lt;- cbind(df, as.data.frame(scRNA1@active.ident))
+colnames(df) &lt;- c(&quot;x&quot;, &quot;y&quot;, &quot;ident&quot;)
+
+#tsn图
+p &lt;- ggplot(df, aes(x=x, y=y)) + geom_point(aes(colour=ident),size=pt_size) + 
+  labs(x=&quot;t-SNE 1&quot;, y =&quot;t-SNE 2&quot;)
+
+#在原有的图上加信息
+meta=scRNA1@meta.data
+meta=meta[,c(1,6)]
+df.m=merge(df,meta,by=0)
+
+#计算celltype每个组中的中位数
+df.m &lt;- df.m %&gt;%
+  dplyr::group_by(celltype) %&gt;%
+  dplyr::summarise(
+    x = median(x),
+    y = median(y)
+  )
+
+
+</code></pre><p>可视化</p>
+<pre><code>#加上celltype的分组信息
+ggplot(df, aes(x, y))  +
+  geom_point(aes(colour  = ident))   +
+  ggrepel::geom_text_repel(aes(label = celltype),
+                           data = df.m,
+                           size = 5,
+                           label.size = 1,
+                           segment.color = NA
+  )+   theme(legend.position = &quot;none&quot;) + theme_bw()
+
+
+ #换黑色主题
+  ggplot(df, aes(x, y))  +
+  geom_point(aes(colour  = ident))   +
+  ggrepel::geom_label_repel(aes(label = celltype),
+                            data = df.m,
+                            size = 5,
+                            label.size = 1,
+                            segment.color = NA
+  )+   theme(legend.position = &quot;none&quot;) + theme_dark()
+
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447292.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447293.png" alt=""></p>
+<h2 id="9-19-t-sne-2">9.19 T-SNE自定义-2</h2>
+<pre><code>#定义足够多的颜色，后面从这里选颜色
+mycol &lt;- c(&quot;#223D6C&quot;,&quot;#D20A13&quot;,&quot;#FFD121&quot;,&quot;#088247&quot;,&quot;#11AA4D&quot;,&quot;#58CDD9&quot;,&quot;#7A142C&quot;,&quot;#5D90BA&quot;,&quot;#431A3D&quot;,&quot;#91612D&quot;,&quot;#6E568C&quot;,&quot;#E0367A&quot;,&quot;#D8D155&quot;,&quot;#64495D&quot;,&quot;#7CC767&quot;)
+
+#自定义要突出的细胞
+mutList=...
+</code></pre><p>可视化</p>
+<pre><code>DimPlot(scRNA1, reduction = &quot;tsne&quot;, 
+        cells.highlight = mutList,
+        cols.highlight = mycol[5], 
+        sizes.highlight = 1.5, 
+        group.by =&quot;orig.ident&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447294.png" alt=""></p>
+<pre><code>#每个样本分布情况
+DimPlot(scRNA1, reduction = &quot;tsne&quot;, 
+        cols = mycol[1:4],
+        group.by =&quot;orig.ident&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447295.png" alt=""></p>
+<h2 id="9-20-">9.20 气泡图自定义</h2>
+<pre><code>p &lt;-DotPlot(scRNA1, features = f1 ) + coord_flip()
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447296.png" alt=""></p>
+<p>使用ggplot</p>
+<pre><code>#对p提取data
+dot.data=p[[&quot;data&quot;]]
+
+colnames(dot.data)
+p1=ggplot(dot.data,aes(x=id, y = features.plot, color = avg.exp.scaled, size = pct.exp)) + 
+  geom_point() 
+
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447297.png" alt=""></p>
+<h2 id="9-21-">9.21 密度图</h2>
+<pre><code>x=as.data.frame(scRNA1@active.ident)
+df &lt;- scRNA1@reductions$umap@cell.embeddings
+df &lt;- cbind(df, as.data.frame(scRNA1@meta.data))
+
+# calculate density
+(plot_density函数中的计算方法有个wkde: Computes density using a modified version of the kde2d function from the MASS package to allow weights. Bandwidth selection from the ks package is used instead.所以我们利用MASS::kde2d来创建函数计算密度)
+
+get_density &lt;- function(x, y, ...) {
+  dens &lt;- MASS::kde2d(x, y, ...)
+  ix &lt;- findInterval(x, dens$x)
+  iy &lt;- findInterval(y, dens$y)
+  ii &lt;- cbind(ix, iy)
+  return(dens$z[ii])
+}
+
+
+#使用循环针对样本（orig.ident）的density计算(这是无法进行p值计算的，仅可以肉眼看差异)
+df$orig.ident
+for (i in unique(df$orig.ident)) {
+  id &lt;- which(df$orig.ident==i)
+  gd &lt;- get_density(df$UMAP_1[id], df$UMAP_2[id], n = 100)
+  df[id,&#39;Density&#39;] &lt;- gd/max(gd)
+}
+
+
+ggplot(df,aes(x = UMAP_1,y = UMAP_2, col = Density)) +
+  geom_point(size = point_size, shape = point_shape, alpha = point_alpha) +
+  theme_classic(base_size = font_size) +
+  facet_grid(.~orig.ident) +
+  scale_colour_viridis_c(option = &#39;C&#39;,direction = 1,breaks = breaks) +
+  theme(legend.position = &#39;bottom&#39;,
+        strip.text.y.right = element_text(angle = 0),
+        strip.text = element_text(size = font_size)) +
+  guides(color = guide_colorbar(title.vjust = 1,
+                                barwidth = 12,
+                                barheight = 1.5))
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041447298.png" alt=""></p>
+<h1 id="10-deg">10 DEG</h1>
+<h2 id="10-1-">10.1 柱状图展示</h2>
+<p>此为细胞注释完成后的教程，相关R包自行加载一下～</p>
+<pre><code># 创建数据框
+r.deg=data.frame()
+table(sc.combined@meta.data$orig.ident)
+
+#针对每一个细胞类型进行差异分析
+for (i in 1:7) {
+  Idents(sc.combined)=&quot;celltype&quot;   
+  deg=FindMarkers(sc.combined,ident.1 = &quot;sample_11&quot;,ident.2 = &quot;sample_3&quot;,    
+  #用FindMarkers找差异（ident.2是参考组，如不指定默认为其余所有的细胞）
+                  group.by = &quot;orig.ident&quot;,subset.ident =type[i]   )   
+  deg$gene=rownames(deg) 
+  write.csv(deg,file = paste0( type[i],&#39;deg.csv&#39;) ) 
+  deg$celltype=type[i] 
+  deg$unm=i-1  
+  r.deg=rbind(deg,r.deg)   
+}
+
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041450586.png" alt=""></p>
+<pre><code>#确定log2FC的阈值
+r.deg &lt;- subset(r.deg, p_val_adj &lt; 0.05 &amp; abs(avg_log2FC) &gt; 0.5)
+
+#判断上下调，标记
+r.deg$threshold &lt;- as.factor(ifelse(r.deg$avg_log2FC &gt; 0 , &#39;Up&#39;, &#39;Down&#39;))
+r.deg$adj_p_signi &lt;- as.factor(ifelse(r.deg$p_val_adj &lt; 0.01 , &#39;Highly&#39;, &#39;Lowly&#39;))
+
+#“上下调”和“显著不显著”赋值于新列thr_signi
+r.deg$thr_signi &lt;- paste0(r.deg$threshold, &quot;_&quot;, r.deg$adj_p_signi)
+
+#将unm转化为向量再转为数值型最后返回unm
+r.deg$unm %&lt;&gt;% as.vector(.) %&gt;% as.numeric(.)
+
+</code></pre><p>可视化</p>
+<pre><code>#筛选上调基因
+top_up_label &lt;- r.deg %&gt;% 
+  subset(., threshold%in%&quot;Up&quot;) %&gt;%  #与&quot;Up&quot;取交集。
+  group_by(unm) %&gt;%  
+  top_n(n = 5, wt = avg_log2FC) %&gt;%  #每个分组top5，取决于avglogfc
+  as.data.frame() 
+
+#筛选下调基因
+top_down_label &lt;- r.deg %&gt;% 
+  subset(., threshold %in% &quot;Down&quot;) %&gt;% 
+  group_by(unm) %&gt;% 
+  top_n(n = -5, wt = avg_log2FC) %&gt;% 
+  as.data.frame()
+
+top_label &lt;- rbind(top_up_label,top_down_label)
+
+#按一定顺序排序
+top_label$thr_signi %&lt;&gt;% 
+  factor(., levels = c(&quot;Up_Highly&quot;,&quot;Down_Highly&quot;,&quot;Up_Lowly&quot;,&quot;Down_Lowly&quot;)) 
+
+
+</code></pre><p>可视化</p>
+<pre><code># 准备背景所需数据 进行背景高度限定
+background_position &lt;- r.deg %&gt;%   #输入数据集
+  group_by(unm) %&gt;%    
+  summarise(Min = min(avg_log2FC) - 0.2, Max = max(avg_log2FC) + 0.2) %&gt;%  #分组统计，+—0.2是因为背景高度直接覆盖在最大最小值上不美观
+  as.data.frame()
+
+
+#背景宽度限定
+background_position$unm %&lt;&gt;% as.vector(.) %&gt;% as.numeric(.)
+background_position$start &lt;- background_position$unm - 0.4
+background_position$end &lt;- background_position$unm + 0.4
+
+# 准备绘制中间区域cluster彩色bar所需数据
+cluster_bar_position &lt;- background_position
+cluster_bar_position$start &lt;- cluster_bar_position$unm - 0.5
+cluster_bar_position$end &lt;- cluster_bar_position$unm + 0.5
+cluster_bar_position$unm %&lt;&gt;% 
+  factor(., levels = c(0:max(as.vector(.))))
+
+
+# 设置颜色
+cols_thr_signi &lt;- c(&quot;Up_Highly&quot; = &quot;#d7301f&quot;,
+                    &quot;Down_Highly&quot; = &quot;#225ea8&quot;,
+                    &quot;Up_Lowly&quot; = &quot;black&quot;,
+                    &quot;Down_Lowly&quot; = &quot;black&quot;)
+cols_cluster &lt;- c(&quot;0&quot; = &quot;#35978f&quot;,
+                  &quot;1&quot; = &quot;#8dd3c7&quot;,
+                  &quot;2&quot; = &quot;#ffffb3&quot;,
+                  &quot;3&quot; = &quot;#bebada&quot;,
+                  &quot;4&quot; = &quot;#fb8072&quot;,
+                  &quot;5&quot; = &quot;#80b1d3&quot;,
+                  &quot;6&quot; = &quot;#fdb462&quot;)
+
+
+#可视化
+p= ggplot() +
+  geom_rect(data = background_position, aes(xmin = start, xmax = end, ymin = Min, #geom_rect 柱状图
+                                            ymax = Max),  #确定上下左右
+            fill = &quot;#525252&quot;, alpha = 0.1) + #添加灰色背景
+  geom_jitter(data = r.deg, aes(x =unm, y = avg_log2FC, colour = thr_signi), #geom_jitter 加点
+              size = 1,position = position_jitter(seed = 1)) +  
+  scale_color_manual(values = cols_thr_signi) +  #定义分组颜色
+  scale_x_continuous(limits = c(-0.5, max(r.deg$unm) + 0.5),  #设置x轴范围
+                     breaks = seq(0, max(r.deg$unm), 1),  #按0 1 2 3 4 5 6分割
+                     label = seq(0, max(r.deg$unm),1)) +   #修改坐标轴刻度
+  geom_text_repel(data = top_label, aes(x =unm, y = avg_log2FC, label = gene),  
+                  position = position_jitter(seed = 1), show.legend = F, size = 2.5,
+                  box.padding = unit(0, &quot;lines&quot;)) +
+  geom_rect(data = cluster_bar_position, aes(xmin = start, xmax = end, ymin = -0.4, #中间方框
+                                             ymax = 0.4, fill = unm), color = &quot;black&quot;, alpha = 1, show.legend = F) +
+  scale_fill_manual(values = cols_cluster) + 
+  labs(x = &quot;Cluster&quot;, y = &quot;average log2FC&quot;) + 
+  theme_bw()
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041450587.png" alt=""></p>
+<pre><code>plot1 &lt;- p + theme(panel.grid.major = element_blank(),
+                   axis.text.y = element_text(colour = &#39;black&#39;, size = 14),
+                   axis.text.x = element_text(colour = &#39;black&#39;, size = 14, vjust = 52), #添加cluster名
+                   )
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041450588.png" alt=""></p>
+<h2 id="10-2-">10.2 散点图展示</h2>
+<pre><code>library(ggplot2)
+library(cowplot)
+theme_set(theme_cowplot())
+
+
+t.cells &lt;- subset(scRNA_harmony, idents = &quot;1&quot;)
+
+#修改active.ident
+Idents(t.cells) &lt;- &quot;orig.ident&quot;
+
+#准备做sample 11和3的差异分析
+t.cells=subset(t.cells,ident=c(&quot;sample_11&quot;,&quot;sample_3&quot;))
+
+#取平均，取完提取RNA，然后用log1p（1p=+1再取log2，p=plus）函数取log值，完成数据放缩
+avg.t.cells &lt;- as.data.frame(log1p(AverageExpression(t.cells, verbose = FALSE)$RNA))
+
+#添加到avg.t.cells
+avg.t.cells$gene &lt;- rownames(avg.t.cells)
+
+#找到差异显著的marker基因
+deg &lt;- FindMarkers(t.cells,ident.1 = &quot;sample_11&quot;,ident.2 = &quot;sample_3&quot;, logfc.threshold = 2,group.by = &quot;orig.ident&quot;)
+
+#随机抽15个基因
+genes.to.label = sample(rownames(deg),15)
+
+</code></pre><p>可视化</p>
+<pre><code>p1 &lt;- ggplot(avg.t.cells, aes(sample_11,sample_3)) + geom_point() + ggtitle(&quot;T Cells&quot;) #越中间越差异显著
+
+p1 &lt;- LabelPoints(plot = p1, points = genes.to.label, repel = TRUE) #将基因加上
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041450589.png" alt=""></p>
+<p>美化</p>
+<pre><code>degdf=avg.t.cells
+
+#提取label基因
+degdf.l=degdf[genes.to.label,]
+
+#把label之外的点全部提取
+degdf.p=degdf[-match(genes.to.label,rownames(degdf)),]
+
+#分别添加diff和no_diff
+degdf.p$Sig=&quot;NO_DIFF&quot;
+degdf.l$Sig=&quot;DIFF&quot;
+
+#合并
+degdf=rbind(degdf.p,degdf.l)
+
+#
+p=ggplot(degdf, aes(sample_11,sample_3)) + 
+  geom_point( aes(color=Sig)) + 
+  scale_color_manual(values=c(&quot;red&quot;,&quot;grey&quot;))+ 
+  ggtitle(&quot;Stromal Cells&quot;)+
+  theme(plot.title = element_text(size =18,hjust = 0.5, face = &quot;bold&quot;)) + 
+  theme(axis.title.x =element_text(size=14), axis.title.y=element_text(size=14)) +  
+  theme_bw()
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041450590.png" alt=""></p>
+<pre><code>#加上基因
+data_selected &lt;- degdf[genes.to.label,]
+p + geom_label_repel(data=data_selected,
+                     aes(label=rownames(data_selected))) 
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041450591.png" alt=""></p>
+<h2 id="10-3-">10.3 火山图</h2>
+<pre><code>#差异基因结果中加上基因
+degdf$symbol &lt;- rownames(degdf)
+
+#针对logfc p进行阈值设定
+logFC_t=0
+P.Value_t = 1e-28
+
+#区分上下调显著基因
+degdf$change = ifelse(degdf$p_val_adj &lt; P.Value_t &amp; degdf$avg_log2FC &lt; 0,&quot;down&quot;,
+                      ifelse(degdf$p_val_adj &lt; P.Value_t &amp; degdf$avg_log2FC &gt; 0,&quot;up&quot;,&quot;stable&quot;))
+</code></pre><p>可视化</p>
+<pre><code>p=ggplot(degdf, aes(avg_log2FC,  -log10(p_val_adj))) +
+  geom_point(alpha=0.4, size=2.8, aes(color=change)) +
+  ylab(&quot;-log10(Pvalue)&quot;)+
+  scale_color_manual(values=c(&quot;green&quot;, &quot;grey&quot;,&quot;red&quot;))+
+  geom_hline(yintercept = -log10(P.Value_t),lty=4,col=&quot;black&quot;,lwd=0.8) +
+  theme_bw()
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041450592.png" alt=""></p>
+<h1 id="11-">11.富集分析</h1>
+<h2 id="11-1-">11.1 通路活化程度</h2>
+<p>每个cell 中的数值代表某基因在某细胞中表达量排序的序号（表达量从高到低排序），反应了定义geneSet在每一个细胞中的活性，值越高，活性越高</p>
+<pre><code>library(AUCell)
+library(clusterProfiler)
+
+#细胞排序
+cells_rankings &lt;- AUCell_buildRankings(sc2@assays$RNA@data,  nCores=6, plotStats=TRUE)   
+
+#下载基因集
+c2 &lt;- read.gmt(&quot;c2.cp.kegg.v7.5.1.symbols.gmt&quot;) 
+
+#去除重复term，提取该通路基因，组建list
+geneSets &lt;- lapply(unique(c2$term), function(x){print(x);c2$gene[c2$term == x]})
+names(geneSets) &lt;- unique(c2$term)
+
+#AUC计算
+cells_AUC &lt;- AUCell_calcAUC(geneSets, cells_rankings,nCores =1, aucMaxRank=nrow(cells_rankings)*0.1)
+
+#提取含ox通路
+grep(&quot;OX&quot;,rownames(cells_AUC@assays@data$AUC),value = T)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451847.png" alt=""></p>
+<pre><code>#将氧化磷酸化赋值于geneset对象
+geneSet &lt;- &quot;KEGG_OXIDATIVE_PHOSPHORYLATION&quot;
+
+#每个细胞的auc结果转为数值型
+aucs &lt;- as.numeric(getAUC(cells_AUC)[geneSet, ]) #getAUC(cells_AUC)是将结果提取，提取后是个data.frame
+
+#数值赋值到scRNA1
+scRNA1$AUC &lt;- aucs
+
+#meta.data和cell.embeddings合并
+df&lt;- data.frame(scRNA1@meta.data, scRNA1@reductions$umap@cell.embeddings)
+</code></pre><p>可视化</p>
+<pre><code>#画图
+ggplot(df, aes(UMAP_1, UMAP_2))  +
+  geom_point(aes(colour  = AUC)) + viridis::scale_color_viridis(option=&quot;E&quot;) + #颜色用viridis::scale_color_viridis 配色
+  ggrepel::geom_label_repel(aes(label = seurat_clusters),
+                            data = class_avg,
+                            size = 5,
+                            label.size = 1,
+                            segment.color = NA
+  )+   theme(legend.position = &quot;none&quot;) + theme_bw() 
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451848.png" alt=""></p>
+<h2 id="11-2-kegg-go">11.2 KEGG GO</h2>
+<pre><code>#差异基因
+degdf &lt;- FindMarkers(scRNA1,ident.1 = &quot;DapiNeg1&quot;,ident.2 = &quot;DapiNeg2&quot;, 
+                     logfc.threshold = 0.3,group.by = &quot;orig.ident&quot;,subset.ident = 1) 
+
+#得到差异基因列表
+degs.list=rownames(degdf)
+
+#使用差异基因来做enrich.go富集分析
+erich.go.BP = enrichGO(gene =degs.list,
+                       OrgDb = org.Mm.eg.db,
+                       keyType = &quot;SYMBOL&quot;,  
+                       ont = &quot;BP&quot;,   #数据库BP CC MF
+                       pvalueCutoff = 0.05,
+                       qvalueCutoff = 0.05)
+</code></pre><p>可视化</p>
+<pre><code>#气泡图 
+dotplot(erich.go.BP,showCategory = 15 )
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451849.png" alt=""></p>
+<pre><code>#bar状图
+barplot(erich.go.BP,showCategory = 8)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451850.png" alt=""></p>
+<pre><code>erich.kegg.res &lt;- enrichKEGG(gene = DEG.entrez_id,
+                             organism = &quot;mmu&quot;,
+                             keyType = &quot;kegg&quot;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451851.png" alt=""></p>
+<h2 id="11-3-gsva">11.3 GSVA</h2>
+<p>已经计算好deg之后</p>
+<pre><code>library(&#39;GSEABase&#39;)
+library(GSVA)
+library(msigdbr)
+
+
+#提取人的hallmark gene
+m_df&lt;- msigdbr(species = &quot;human&quot;,  category = &quot;H&quot; )
+
+#切割
+geneSets &lt;- m_df %&gt;% split(x = .$gene_symbol, f = .$gs_name)
+
+#平均表达值
+exp=AverageExpression(scRNA_harmony,add.ident = &quot;orig.ident&quot;) 
+
+#对应的RNA提取，得到针对各个样本的各个cluster的
+exp=exp[[&quot;RNA&quot;]]
+
+#计算
+GSVA_hall &lt;- gsva(expr=as.matrix(counts2),  #必须matrix
+                  gset.idx.list=geneSets, 
+                  mx.diff=T, 
+                  kcdf=&quot;Gaussian&quot;, #CPM, RPKM, TPM数据，连续的就用默认值&quot;Gaussian&quot;， read count数据，整数时候则为&quot;Poisson&quot;) 
+
+</code></pre><pre><code>library(limma)
+
+# 设置或导入分组 
+group &lt;- factor(c(rep(&quot;s.11&quot;,3), rep(&quot;s.3&quot;, 3)), levels = c( &#39;s.11&#39;,&#39;s.3&#39;))
+
+#创建矩阵
+design &lt;- model.matrix(~0+group)
+
+#改名
+colnames(design) = levels(factor(group))
+rownames(design) = colnames(GSVA_hall)
+
+# 设定 s3 vs s11
+compare &lt;- makeContrasts(s.3 - s.11, levels=design)
+
+#拟合
+fit &lt;- lmFit(GSVA_hall, design)
+fit2 &lt;- contrasts.fit(fit, compare)
+
+#贝叶斯
+fit3 &lt;- eBayes(fit2)
+
+#输出结果提取，为差异分析
+Diff &lt;- topTable(fit3, coef=1, number=200)
+
+</code></pre><p>可视化</p>
+<pre><code>#先把data.frame中的t值提取（文中是t）
+dat_plot &lt;- data.frame(id = row.names(Diff),
+                       t = Diff$t)
+
+# 去掉&quot;HALLMARK_&quot;
+library(stringr)
+dat_plot$id &lt;- str_replace(dat_plot$id , &quot;HALLMARK_&quot;,&quot;&quot;)
+
+# 新增一列 根据t值分类
+dat_plot$threshold = factor(ifelse(dat_plot$t  &gt;-1, ifelse(dat_plot$t &gt;= 1 ,&#39;Up&#39;,&#39;NoSignifi&#39;),&#39;Down&#39;),levels=c(&#39;Up&#39;,&#39;Down&#39;,&#39;NoSignifi&#39;))
+
+# 排序
+dat_plot &lt;- dat_plot %&gt;% arrange(t)
+
+# 绘制
+library(ggplot2)
+library(ggthemes)
+library(ggprism)
+
+p &lt;- ggplot(data = dat_plot,aes(x = id,y = t,fill = threshold)) +
+  geom_col()+
+  coord_flip() +
+  scale_fill_manual(values = c(&#39;Up&#39;= &#39;#36638a&#39;,&#39;NoSignifi&#39;=&#39;#cccccc&#39;,&#39;Down&#39;=&#39;#7bcd7b&#39;)) +
+  geom_hline(yintercept = c(-2,2),color = &#39;white&#39;,size = 0.5,lty=&#39;dashed&#39;) +
+  xlab(&#39;&#39;) + 
+  ylab(&#39;t value of GSVA score, S.11 VS S.3&#39;) + 
+  guides(fill=F)+ 
+  theme_prism(border = T) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+</code></pre><p><img src="/Users/soonmin/Desktop/machine/code class/t![](https://![](https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451852.png" alt="屏幕快照 2022-09-03 23.16.05"></p>
+<pre><code># 添加标签
+
+# 小于-1的数量
+low1 &lt;- dat_plot %&gt;% filter(t &lt; -1) %&gt;% nrow()
+# 小于0总数量
+low0 &lt;- dat_plot %&gt;% filter( t &lt; 0) %&gt;% nrow()
+# 小于1总数量
+high0 &lt;- dat_plot %&gt;% filter(t &lt; 1) %&gt;% nrow()
+# 总的柱子数量
+high1 &lt;- nrow(dat_plot)
+
+# 依次从下到上添加标签
+p &lt;- p + geom_text(data = dat_plot[1:low1,],aes(x = id,y = 0.1,label = id),
+                   hjust = 0,color = &#39;black&#39;) + # 小于-1的为黑色标签
+  geom_text(data = dat_plot[(low1 +1):low0,],aes(x = id,y = 0.1,label = id),
+            hjust = 0,color = &#39;grey&#39;) + # 灰色标签
+  geom_text(data = dat_plot[(low0 + 1):high0,],aes(x = id,y = -0.1,label = id),
+            hjust = 1,color = &#39;grey&#39;) + # 灰色标签
+  geom_text(data = dat_plot[(high0 +1):high1,],aes(x = id,y = -0.1,label = id),
+            hjust = 1,color = &#39;black&#39;) # 大于1的为黑色标签
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451853.png" alt=""></p>
+<h2 id="11-4-gsea">11.4 GSEA</h2>
+<p>原理：
+1.计算富集分数（ES）：ES反应基因集成员s在排序列表L的两端富集程度。计算方式为从基因集L的第一个基因开始，计算一个累计统计值。当遇到一个落在s里面的基因，则增加统计值。遇到一个不再s里面的基因，则降低统计值，每一步统计值增加或减少的幅度与基因的表达变化程度（更严格的是与基因和表型的关联度）是相关的。ES最后定义为最大的峰值。正值表示基因集在列表的顶部富集，负值表示基因集在列表底部富集。
+2.估计富集分数的显著性水平(&lt;0.01 或0.05)：通过基于表型而不改变基因之间关系的排列检验（permutation test）计算观察到的ES出现的可能性。若样品量少，也可以基于基因集做排列检验,计算p值
+3.矫正多重假设检验(&gt;1.5)：首先对每个基因子集s计算得到的ES根据基因集大小进行标准化得到Normalized enrichment score(NES).随后针对NES计算假阳性率。（计算NES也有另外一种方法，是计算出的ES除以排列检验得到的所有ES的平均值）</p>
+<pre><code>Idents(scRNA1)=&quot;celltype&quot;
+
+#差异分析
+deg=FindMarkers(scRNA1,ident.1 = &quot;Adipocytes&quot;,ident.2 = &quot;Granulocytes&quot;,
+                min.pct = 0.01,logfc.threshold = 0.01)
+
+#变化倍数赋值list
+genelist=deg$avg_log2FC
+
+#基因命名，并且全变为大写
+names(genelist)=rownames(deg)
+
+#降序
+genelist=sort(genelist,decreasing = T)
+
+library(GSEABase)
+library(enrichplot)
+
+#读取dataset
+geneset=read.gmt(&quot;c2.cp.kegg.v7.5.1.symbols.gmt&quot;)
+
+#GSEA
+egmt=GSEA(genelist,TERM2GENE = geneset,
+          minGSSize = 1,pvalueCutoff = 0.5)
+
+#选择要的通路
+gseaplot2(egmt,geneSetID =c(1,2),pvalue_table = T)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041451854.png" alt=""></p>
+<p>也有一些使用柱状图来呈现，可自己多参考文献学习</p>
+<h1 id="12-atac-seq">12. ATAC-seq</h1>
+<h2 id="12-1-">12.1 简介</h2>
+<p>atac-seq流程与chip-seq类似：</p>
+<p>1.上游质控 获得 fastq文件 </p>
+<p>2.比对到参考基因组上获得bam文件 ，一系列过滤（排序、创建index），包括针对fastq过滤  得到bam文件  </p>
+<p>3.peak calling 峰值定量：通过基因的片段数数量判断基因表达量，atac-seq更多的是取决于峰值。因为平时的片段可能会落在基因的起始位点或者终止位点，或者外显子内含子上，不同区域对应的峰值结果不同，但可以确定的是reads数越多，峰值越大，因此atac-seq时候主要关注峰值，峰值越高说明裸露的mRNA越多，也说明染色质的开放度越强。</p>
+<p>单细胞中a基因表达量取决于在a区域内比对得到的reads数，这时候的定量是针对feature counts的定量；peak值是针对峰值的定量，归一化；<strong>两者定量的区别点在于区域不同</strong>，<strong>mRNA</strong>定量是针对单个基因区域内的所有reads值进行定量，<strong>atac-seq</strong>是针对a基因的不同区域内进行定量。</p>
+<p>mRNA定量方法：针对整个基因的表达量，不论片段落在基因的哪个区域，enhancer还是promoter，落在上面了定量就+1</p>
+<p>Atac-seq是针对a基因的不同区域，针对promoter的区域，针对enhancer的区域，针对外显子的区域，比对出不同的峰值。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453889.png" alt=""></p>
+<p><strong>染色质和染色体的结构和功能</strong></p>
+<p>每一条染色单体由单个线性DNA分子组成。细胞核中的DNA是经过高度有序的包装，才能保证基因组的复制和表达调控能准确和高效进行。</p>
+<p>包装分为多个水平，核小体核心颗粒（nucleosome core particle）、染色小体（chromatosome）、30nm水平染色质纤丝（30nm fibre）和高于30nm水平的染色体包装。在细胞周期的不同时期，DNA的浓缩程度不同，间期表现为染色质具有转录活性，而中期染色体是转录惰性。细胞主要处于分裂间期，所以DNA大部分都是染色质而不是染色体，只不过大家喜欢用染色体泛指染色质和染色体。</p>
+<p>我们所指的开放程度即为染色小体分解暴露DNA的程度</p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453890.png" alt=""></p>
+<p>很久以前大家喜欢研究中期染色体，原因是光学显微镜只能看到这种高度浓缩状态的DNA结构。不过中期染色体在转录上是惰性的，没有研究间期染色体的意义大。后来技术发展，大家开始通过荧光蛋白标记技术以及显微镜技术研究间期染色质的三维结构和动态。比如，间期染色体其实并非随机弥漫在细胞核中，不同染色体占据相对独立空间，染色体在细胞核所占空间称之为染色体领地（chromosome territory,CT）。研究发现，贫基因（gene-porr）的染色体领域一般倾向于靠近核膜，而富含基因（gene-rich）的染色体领地通常位于细胞核内部。这也反映了人类社会情况，富人处于核心区，穷人在边缘地带。</p>
+<p>除了染色体细胞核内的三维结构外，还需要谈谈和转录调控相关的染色质的核小体。用内切核糖酶--微球菌核酸酶（micrococcal nucles,MNase,MN酶）处理染色质可以得到单个核小体。核小体是染色质的基本结构，由DNA、蛋白质和RNA组成的一种致密结构。组蛋白是由2个H3-H4二聚体，2个H2A-H2B二聚体形成的八聚体，直径约10nm，组蛋白八聚体和dna结合在一起形成的核心颗粒包含146bp DNA.DNA暴露在核小体表面使得其能被特定的核酸酶接近并非切割。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453891.png" alt=""></p>
+<p>染色质结构改变会发生在与转录起始相关或与DNA的某种结构特征相关的特定位点。当染色质用DNA酶I(DNase)消化时，第一个效果就是在双链体中特定的超敏位点（hypersenitive site）引入缺口，这种敏感性可以反应染色质中DNA的可及性（accessible），也就是说这些事染色质中DNA由于未组装成通常核小体结构而特别暴露出的结构。</p>
+<p>许多超敏位点与基因表达有关。每个活性基因在启动子区域都存在一个超敏位点。大部分超敏位点仅存在于相关基因正在被表达的或准备表达的细胞染色中；基因表达不活跃时他们则不出现。</p>
+<p><strong>染色质开放区域和ATAC-seq</strong></p>
+<p>超敏位点和基因表达有关，并且超敏位点反映了染色质的可及性。也就可以反推出“可及性”的染色质结构区域可能与基因表达调控相关。于是科学家使用超敏Tn5转座酶切割染色质的开放区域，并且加上接头（adapter）进行高通量测序。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453892.png" alt=""></p>
+<h2 id="12-2-">12.2示例</h2>
+<p><strong>下机得到的文件</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453893.png" alt=""></p>
+<h2 id="12-3-">12.3 样本处理分析</h2>
+<pre><code>library(Signac)
+library(Seurat)
+library(GenomeInfoDb)
+library(EnsDb.Mmusculus.v79)
+library(ggplot2)
+library(patchwork)
+</code></pre><p>#数据加载 主要读取两个输入文件，用cellranger处理产生：
+<strong>peak/cell matrix</strong>
+类似于用于分析单细胞rna-seq的基因表达计数矩阵。但矩阵中的每一行代表一个基因组区域（“peak region”）而不是基因，表示开放的染色质区域。
+矩阵中的每个值代表在每个峰内映射的细胞的Tn5切割位点的数量。</p>
+<p><strong>fragment file</strong>
+这个文件存储了所有单细胞中唯一片段（unique Fragments）的完整列表。该文件较大。使用起来也较慢，并且存储在磁盘上（而不是内存中）。但是，保留此文件的好处是它包含了每个细胞关联的所有片段，与仅映射到peaks的reads数相反。
+对于大多数分析，我们仅使用peak/cell matrix矩阵即可，但对于某些分析（如，创建gene activity matrix），我们发现仅使用peak映射的reads数可能会对结果产生不利影响。
+因此我们同时使用两个文件，首先使用leak/cell matrix 矩阵创建seurat对象，然后将片段文件（fragment file）的路径存储在磁盘上的seurat对象中。</p>
+<pre><code>#读取h5文件
+counts &lt;- Read10X_h5(&quot;filtered_peak_bc_matrix.h5&quot;)
+
+#读取csv文件
+metadata &lt;- read.csv(
+  file = &quot;singlecell.csv&quot;,
+  header = TRUE,
+  row.names = 1
+)
+
+#创建ChromatinAssay对象
+brain_assay &lt;- CreateChromatinAssay(
+  counts = counts,
+  sep = c(&quot;:&quot;, &quot;-&quot;),
+  genome = &quot;mm10&quot;,
+  fragments = &#39;fragments.tsv.gz&#39;,
+  min.cells = 1
+)
+
+#创建CreateSeuratObject
+brain &lt;- CreateSeuratObject(
+  counts = brain_assay,
+  assay = &#39;peaks&#39;,
+  project = &#39;ATAC&#39;,
+  meta.data = metadata
+)
+
+
+#提取annotations
+library(biovizBase)
+annotations &lt;- GetGRangesFromEnsDb(ensdb = EnsDb.Mmusculus.v79)
+
+# 将ucsc的结果赋值过来
+seqlevelsStyle(annotations) &lt;- &#39;UCSC&#39;
+genome(annotations) &lt;- &quot;mm10&quot;
+
+# add the gene information to the object
+Annotation(brain) &lt;- annotations
+
+</code></pre><p><strong>计算质量控制标准</strong></p>
+<p>与scRNA-seq一样，这些参数范围将根据情况而变化:</p>
+<p>1.nucleosome banding pattern(核小体条带模式)：绘制片段大小（fragment sizes）的直方图（由配对末端测序读数确定）来展示核小体的条带模式。
+计算每个单细胞，并量化单核小体与无核小体片段（存储为nucleosome_signal）的近似比率。</p>
+<p>2.transcriptional start site(TSS) enrichment score(转录起始位点富集得分)：ENCODE项目已根据以TSS为中心的片段与TSS侧翼区域中的片段的比率定义了ATAC-seq定位得分（<a href="https://www.encodeproject.org/data-standards/terms/）">https://www.encodeproject.org/data-standards/terms/）</a>
+较差的atac-seq实验通常将具有较低的tss富集分数。可以使用TSSEnrichment函数为每个细胞计算该指标，并将结果存储在元数据中，列名位TSS.enrichment。</p>
+<p>3.total number of fragments in peaks(peaks中片段的总数)：细胞测序深度/复杂性的量度。由于测序深度低，可能需要排除reads数很少的细胞，reads数极高的细胞可能代表了doublets或核团块。</p>
+<p>4.fraction of fragments in peaks(peaks中片段的比例)：表示落在atac-seq peaks内的总片段比例。比例较低的细胞（即&lt;15-20%）通常代表应删除的低质量细胞或技术误差。</p>
+<p>5.ratio reads in &#39;blacklist&#39; sites(比对到blacklist区域的reads比率)：ENCODE项目提供了一个blacklist区域列表，这些区域表示通常与人为信号关联的读取。reads比对到这些区域的比例较高的细胞（与reads比对到peaks区域比例相比）通常代表了技术误差，应将其删除。</p>
+<pre><code>#计算nucleosome banding pattern
+brain &lt;- NucleosomeSignal(object = brain)
+
+#判断
+brain$nucleosome_group &lt;- ifelse(brain$nucleosome_signal &gt; 4, &#39;NS &gt; 4&#39;, &#39;NS &lt; 4&#39;)
+
+#查看分布
+FragmentHistogram(object = brain, group.by = &#39;nucleosome_group&#39;, region = &#39;chr1-1-10000000&#39;)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453894.png" alt=""></p>
+<p>#根据核小体条带信号强度进行分组，可以观察所有细胞的片段长度周期性，并将高或低核小体信号强度的细胞分组。</p>
+<pre><code>#计算转录起始位点富集得分
+brain &lt;- TSSEnrichment(brain, fast = FALSE)
+
+#判断
+brain$high.tss &lt;- ifelse(brain$TSS.enrichment &gt; 2, &#39;High&#39;, &#39;Low&#39;)
+
+#可视化
+TSSPlot(brain, group.by = &#39;high.tss&#39;) + NoLegend()
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453895.png" alt=""></p>
+<pre><code>#计算peaks中reads的比例
+brain$pct_reads_in_peaks &lt;- brain$peak_region_fragments / brain$passed_filters * 100
+brain$blacklist_ratio &lt;- brain$blacklist_region_fragments / brain$peak_region_fragments
+
+
+
+#小提琴图
+VlnPlot(
+  object = brain,
+  features = c(&#39;pct_reads_in_peaks&#39;, &#39;peak_region_fragments&#39;,
+               &#39;TSS.enrichment&#39;, &#39;blacklist_ratio&#39;, &#39;nucleosome_signal&#39;),
+  pt.size = 0.1,
+  ncol = 5
+)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453896.png" alt=""></p>
+<pre><code>#过滤
+brain &lt;- subset(
+  x = brain,
+  subset = peak_region_fragments &gt; 3000 &amp;
+    peak_region_fragments &lt; 100000 &amp;
+    pct_reads_in_peaks &gt; 40 &amp;
+    blacklist_ratio &lt; 0.025 &amp;
+    nucleosome_signal &lt; 4 &amp;
+    TSS.enrichment &gt; 2
+)
+
+</code></pre><p><strong>归一化与线性降维</strong>
+1.normalization（数据归一化）：将进行两部归一化过程，既可以跨细胞进行归一化以校正细胞测序深度的差异，也可以跨峰（peaks）进行归一化为更罕见的峰值提供更高的值</p>
+<p>2.feature selsction(特征选择):scATAC-seq数据的大部分二进制性质（binary nature）使其难以执行“可变”特征选择。我们可以选择仅使用前n%个特征（峰）进行数据降维，或者使用findtopfeatures删除少于在n个细胞中出现的峰。</p>
+<p>3.dimensional reduction（数据降维）：运行奇异值分解（SVD），最后返回对象的低维数据表示结果</p>
+<pre><code>#归一化
+brain &lt;- RunTFIDF(brain)
+
+#类似找高变基因
+brain &lt;- FindTopFeatures(brain, min.cutoff = &#39;q0&#39;)
+
+#线性降维
+brain &lt;- RunSVD(object = brain)
+
+#评估每个LSI成分与测序深度之间的相关性
+DepthCor(brain)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453897.png" alt=""></p>
+<p>第一个 LSI 组件与单元的总计数存在非常强的相关性，因此将其删除。</p>
+<pre><code>#聚类
+brain &lt;- RunUMAP(
+  object = brain,
+  reduction = &#39;lsi&#39;,
+  dims = 2:30
+)
+
+#FindNeighbors
+brain &lt;- FindNeighbors(
+  object = brain,
+  reduction = &#39;lsi&#39;,
+  dims = 2:30
+)
+
+#FindClusters
+brain &lt;- FindClusters(
+  object = brain,
+  algorithm = 3,
+  resolution = 1.2,
+  verbose = FALSE
+)
+
+#k可视化
+DimPlot(object = brain, label = TRUE) + NoLegend()
+
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453898.png" alt=""></p>
+<p>创建基因表达活性矩阵</p>
+<pre><code>#得到稀疏矩阵
+gene.activities &lt;- GeneActivity(brain)
+
+#单独创建对象
+#assay-peaks
+brain[[&#39;RNA&#39;]] &lt;- CreateAssayObject(counts = gene.activities)
+
+#normalized
+brain &lt;- NormalizeData(
+  object = brain,
+  assay = &#39;RNA&#39;,
+  normalization.method = &#39;LogNormalize&#39;,
+  scale.factor = median(brain$nCount_RNA)
+)
+
+
+#可视化，染色体开放性的活性矩阵
+DefaultAssay(brain) &lt;- &#39;RNA&#39;
+FeaturePlot(
+  object = brain,
+  features = c(&#39;Sst&#39;,&#39;Pvalb&#39;,&quot;Gad2&quot;,&quot;Neurod6&quot;,&quot;Rorb&quot;,&quot;Syt6&quot;),
+  pt.size = 0.1,
+  max.cutoff = &#39;q95&#39;,
+  ncol = 3
+)
+
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453899.png" alt=""></p>
+<pre><code>#可视化针对peaks值
+DefaultAssay(brain) &lt;- &#39;peaks&#39;
+CoveragePlot(
+  object = brain,
+  region = c(&quot;Gapdh&quot;),
+  extend.upstream = 1000,
+  extend.downstream = 1000,
+  ncol = 1
+)
+</code></pre><p><img src="https://cdn.jsdelivr.net/gh/soonmin94/markdown.img/202209041453900.png" alt=""></p>
+
+          	</article>
+        </div>
+    	</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+
+    var conf = eval(jquery_ztree_toc_opts);
+    	$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
